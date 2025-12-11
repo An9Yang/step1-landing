@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { MousePointer2, Loader2, Sparkles, Wand2, Check, ArrowRight, Layout, Palette, Type, Globe } from "lucide-react";
+import { MousePointer2, Loader2, Sparkles, Wand2, Check, ArrowRight, Layout, Palette, Type, Globe, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Step = "browse" | "clone" | "edit" | "publish";
@@ -22,6 +22,16 @@ export function InteractiveGuide() {
         { id: "publish", label: "Result", desc: "Production Ready" },
     ];
 
+    const getBrowserURL = () => {
+        switch (currentStep) {
+            case "browse": return "awesome-design-inspiration.com";
+            case "clone": return "step1.new/cloning...";
+            case "edit": return "step1.app/editor/design-v1";
+            case "publish": return "timeless-elegance.step1.site";
+            default: return "about:blank";
+        }
+    };
+
     const handleExtensionClick = () => {
         if (currentStep === "browse") {
             setCurrentStep("clone");
@@ -34,7 +44,6 @@ export function InteractiveGuide() {
         if (mode === "colors") {
             setSiteTheme(prev => prev === "light" ? "dark" : prev === "dark" ? "blue" : "light");
         }
-        // Simulate "AI thinking" then applying likely changes
     };
 
     return (
@@ -68,7 +77,6 @@ export function InteractiveGuide() {
                             <button
                                 key={s.id}
                                 onClick={() => {
-                                    // simple navigation for demo purposes
                                     if (currentStep === "publish" || s.id === "browse") setCurrentStep(s.id);
                                 }}
                                 className={cn(
@@ -102,19 +110,27 @@ export function InteractiveGuide() {
                                 <div className="w-3 h-3 rounded-full bg-yellow-500/20" />
                                 <div className="w-3 h-3 rounded-full bg-green-500/20" />
                             </div>
-                            <div className="flex-1 text-center text-xs text-neutral-500 font-mono">
-                                {currentStep === "browse" ? "awesome-site.com" : "localhost:3000"}
+                            <div className="flex-1 flex justify-center">
+                                <motion.div
+                                    key={currentStep}
+                                    initial={{ opacity: 0, y: 5 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="bg-black/50 px-4 py-1 rounded text-xs text-neutral-500 font-mono flex items-center gap-2"
+                                >
+                                    {currentStep === "publish" && <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />}
+                                    {getBrowserURL()}
+                                </motion.div>
                             </div>
                             <div className="flex items-center gap-3">
                                 {/* Extension Icon */}
                                 <div
                                     className={cn(
                                         "relative cursor-pointer transition-all duration-300",
-                                        currentStep === "browse" ? "opacity-100 hover:scale-110" : "opacity-50"
+                                        currentStep === "browse" ? "opacity-100 hover:scale-110" : "opacity-30"
                                     )}
-                                    onMouseEnter={() => setIsHoveringExtension(true)}
-                                    onMouseLeave={() => setIsHoveringExtension(false)}
                                     onClick={handleExtensionClick}
+                                    onMouseEnter={() => currentStep === "browse" && setIsHoveringExtension(true)}
+                                    onMouseLeave={() => setIsHoveringExtension(false)}
                                 >
                                     <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center shadow-lg transform active:scale-95 transition-transform">
                                         <div className="w-4 h-4 border-2 border-white rounded-full flex items-center justify-center">
@@ -123,7 +139,7 @@ export function InteractiveGuide() {
                                     </div>
 
                                     {currentStep === "browse" && (
-                                        <div className="absolute top-10 right-0 w-max px-3 py-1.5 bg-purple-600 text-white text-xs rounded-md shadow-xl animate-bounce">
+                                        <div className="absolute top-10 right-0 w-max px-3 py-1.5 bg-purple-600 text-white text-xs rounded-md shadow-xl animate-bounce z-50">
                                             Click me!
                                             <div className="absolute -top-1 right-3 w-2 h-2 bg-purple-600 rotate-45" />
                                         </div>
@@ -185,7 +201,7 @@ export function InteractiveGuide() {
                                             <div className="absolute inset-0 bg-purple-500 blur-2xl opacity-20 animate-pulse" />
                                             <Loader2 className="w-16 h-16 text-purple-500 animate-spin relative z-10" />
                                         </div>
-                                        <h3 className="mt-8 text-2xl font-bold text-white">Analyzing Semantics...</h3>
+                                        <h3 className="mt-8 text-2xl font-bold text-white">Cloning to Step1...</h3>
                                         <div className="mt-4 flex flex-col gap-2 w-full max-w-xs text-sm text-neutral-400 font-mono">
                                             <motion.div
                                                 initial={{ opacity: 0, x: -10 }}
@@ -193,7 +209,7 @@ export function InteractiveGuide() {
                                                 transition={{ delay: 0.5 }}
                                                 className="flex justify-between"
                                             >
-                                                <span>Typography</span>
+                                                <span>Resolving Assets</span>
                                                 <span className="text-green-400">Done</span>
                                             </motion.div>
                                             <motion.div
@@ -202,7 +218,7 @@ export function InteractiveGuide() {
                                                 transition={{ delay: 1.0 }}
                                                 className="flex justify-between"
                                             >
-                                                <span>Colors</span>
+                                                <span>Generating Tokens</span>
                                                 <span className="text-green-400">Done</span>
                                             </motion.div>
                                             <motion.div
@@ -211,7 +227,7 @@ export function InteractiveGuide() {
                                                 transition={{ delay: 1.5 }}
                                                 className="flex justify-between"
                                             >
-                                                <span>Layout</span>
+                                                <span>Building React Components</span>
                                                 <span className="text-green-400">Done</span>
                                             </motion.div>
                                         </div>
@@ -230,11 +246,20 @@ export function InteractiveGuide() {
                                                     "bg-white text-black"
                                         )}
                                     >
-                                        <div className="absolute top-4 left-4 right-4 bottom-4 border-2 border-dashed border-purple-500/30 rounded-lg pointer-events-none z-10 flex items-start justify-center pt-2">
-                                            <span className="bg-purple-500/20 text-purple-600 px-2 py-0.5 text-[10px] rounded uppercase font-bold tracking-wider backdrop-blur-md">
-                                                Editable Mode
-                                            </span>
-                                        </div>
+                                        {currentStep === "edit" ? (
+                                            <div className="absolute top-4 left-4 right-4 bottom-4 border-2 border-dashed border-purple-500/30 rounded-lg pointer-events-none z-10 flex items-start justify-center pt-2">
+                                                <span className="bg-purple-500/20 text-purple-600 px-2 py-0.5 text-[10px] rounded uppercase font-bold tracking-wider backdrop-blur-md">
+                                                    Editor Active
+                                                </span>
+                                            </div>
+                                        ) : (
+                                            <div className="absolute top-4 right-4 z-10">
+                                                <div className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center gap-2 animate-in fade-in slide-in-from-top-4 duration-500">
+                                                    <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                                                    Live
+                                                </div>
+                                            </div>
+                                        )}
 
                                         <div className="flex-1 p-8 md:p-12 overflow-y-auto">
                                             <nav className="flex justify-between items-center mb-16 opacity-80">
@@ -343,14 +368,19 @@ export function InteractiveGuide() {
                                         </p>
                                     </div>
 
-                                    <div className="grid gap-3">
+                                    <div className="grid gap-3 relative">
+                                        {/* Guide Overlay for the Button */}
+                                        <div className="absolute -left-4 -top-4 w-1 h-full bg-purple-500 rounded-full animate-pulse" />
+
                                         <Button
                                             variant="outline"
-                                            className="justify-start h-12 text-left bg-white/5 hover:bg-white/10 border-white/10"
+                                            className="justify-start h-12 text-left bg-purple-500/10 hover:bg-purple-500/20 border-purple-500/50 text-white relative overflow-hidden group"
                                             onClick={() => handleEditAction("colors")}
                                         >
+                                            <div className="absolute inset-0 bg-purple-500/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                                             <Palette className="w-4 h-4 mr-3 text-purple-400" />
                                             <span>Reshuffle Theme / Colors</span>
+                                            <span className="ml-auto text-[10px] bg-purple-500 text-white px-1.5 rounded">TRY ME</span>
                                         </Button>
                                         <Button
                                             variant="outline"
@@ -358,13 +388,6 @@ export function InteractiveGuide() {
                                         >
                                             <Type className="w-4 h-4 mr-3 text-blue-400" />
                                             <span>Change Typography (Coming Soon)</span>
-                                        </Button>
-                                        <Button
-                                            variant="outline"
-                                            className="justify-start h-12 text-left bg-white/5 hover:bg-white/10 border-white/10 opacity-50 cursor-not-allowed"
-                                        >
-                                            <Layout className="w-4 h-4 mr-3 text-green-400" />
-                                            <span>Auto-Layout Reform (Coming Soon)</span>
                                         </Button>
                                     </div>
 
@@ -388,16 +411,17 @@ export function InteractiveGuide() {
                                         <Check className="w-8 h-8 text-green-500" />
                                     </div>
                                     <div>
-                                        <h3 className="text-2xl font-bold">Ready to Ship</h3>
+                                        <h3 className="text-2xl font-bold">Live in Seconds</h3>
                                         <p className="text-muted-foreground mt-2">
-                                            Your unique site is ready. Export to code or publish instantly.
+                                            Your unique site is deployed globally.
                                         </p>
                                     </div>
-                                    <div className="p-4 bg-black rounded-lg border border-white/10 font-mono text-xs text-green-400 overflow-hidden text-left">
-                                        npm install @step1/cli<br />
-                                        step1 init my-new-site<br />
-                                        &gt; Ready in 0.4s
+                                    <div className="flex items-center gap-2 p-3 bg-green-900/20 border border-green-500/30 rounded text-sm text-green-300 font-mono">
+                                        <Globe className="w-4 h-4" />
+                                        <span className="truncate">timeless-elegance.step1.site</span>
+                                        <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
                                     </div>
+
                                     <Button
                                         onClick={() => setCurrentStep("browse")}
                                         variant="ghost"

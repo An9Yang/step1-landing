@@ -3,7 +3,6 @@ import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
 import { InteractiveGuide } from "@/components/sections/interactive-guide";
 import { HowItWorks } from "@/components/sections/how-it-works";
-import { Features } from "@/components/sections/features";
 
 export default function Home() {
   return (
@@ -12,7 +11,6 @@ export default function Home() {
       <Hero />
       <InteractiveGuide />
       <HowItWorks />
-      <Features />
       <Footer />
     </main>
   );
