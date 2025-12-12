@@ -40,6 +40,24 @@ export function HowItWorks() {
             title: "Create",
             desc: "Edit with AI (copy, colors, layout). Sign in only when your clone is ready to save — then export or publish.",
             icon: Sparkles,
+            cta: (
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                    <Link
+                        href="/#features"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-white underline underline-offset-4 hover:text-neutral-200"
+                    >
+                        See editing capabilities
+                    </Link>
+                    <a
+                        href={CHROME_WEBSTORE_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-300 underline underline-offset-4 hover:text-white"
+                    >
+                        Add to Chrome
+                    </a>
+                </div>
+            ),
         },
     ] as const;
 
@@ -53,23 +71,29 @@ export function HowItWorks() {
                     </p>
                 </div>
 
-                <div className="grid gap-6 md:grid-cols-3">
-                    {steps.map((s) => (
-                        <div key={s.step} className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                            <div className="flex items-start justify-between gap-6">
-                                <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                <ol className="max-w-4xl mx-auto">
+                    {steps.map((s, idx) => (
+                        <li key={s.step} className="relative pb-10 last:pb-0">
+                            <div className="absolute left-0 top-0 flex flex-col items-center">
+                                <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
                                     <s.icon className="w-5 h-5 text-primary" />
                                 </div>
-                                <div className="text-xs font-mono text-neutral-500">{s.step}</div>
+                                {idx !== steps.length - 1 && (
+                                    <div className="w-px flex-1 bg-gradient-to-b from-white/15 via-white/10 to-transparent mt-3" />
+                                )}
                             </div>
 
-                            <h3 className="mt-5 text-white font-semibold text-xl">{s.title}</h3>
-                            <p className="mt-2 text-neutral-400 text-sm leading-relaxed">{s.desc}</p>
-
-                            {"cta" in s && s.cta && <div className="mt-4">{s.cta}</div>}
-                        </div>
+                            <div className="pl-14">
+                                <div className="flex items-baseline gap-3">
+                                    <div className="text-xs font-mono text-neutral-500">{s.step}</div>
+                                    <h3 className="text-white font-semibold text-xl">{s.title}</h3>
+                                </div>
+                                <p className="mt-2 text-neutral-400 text-sm leading-relaxed">{s.desc}</p>
+                                {"cta" in s && s.cta && <div className="mt-4">{s.cta}</div>}
+                            </div>
+                        </li>
                     ))}
-                </div>
+                </ol>
             </Container>
         </section>
     );

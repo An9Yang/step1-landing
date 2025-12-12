@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import { ExternalLink, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -37,27 +38,35 @@ export function Showcase() {
                             <Sparkles className="w-4 h-4 text-primary" />
                             <span className="text-xs font-mono tracking-wider uppercase text-primary">Showcase</span>
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-bold text-white">See the output first.</h2>
+                        <h2 className="text-3xl md:text-5xl font-bold text-white">Proof of fidelity — scroll the clone.</h2>
                         <p className="text-neutral-400 text-lg leading-relaxed">
-                            Scroll inside the frame — this is a real page render (not a static image).
+                            This is a real render (not a screenshot). Scroll and click around to feel what “1‑click clone” can look like.
                         </p>
                     </div>
 
                     <div className="flex flex-wrap items-center justify-center md:justify-end gap-2">
-                        {templates.map((t) => (
-                            <Button
-                                key={t.id}
-                                size="sm"
-                                variant={t.id === activeId ? "default" : "outline"}
-                                className={cn(
-                                    "rounded-full",
-                                    t.id !== activeId && "bg-white/5 border-white/10 hover:bg-white/10 text-white"
-                                )}
-                                onClick={() => setActiveId(t.id)}
-                            >
-                                {t.name}
-                            </Button>
-                        ))}
+                        <div className="inline-flex items-center rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur-sm">
+                            {templates.map((t) => (
+                                <button
+                                    key={t.id}
+                                    type="button"
+                                    onClick={() => setActiveId(t.id)}
+                                    className={cn(
+                                        "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                                        t.id === activeId ? "text-white" : "text-neutral-300 hover:text-white"
+                                    )}
+                                >
+                                    {t.id === activeId && (
+                                        <motion.span
+                                            layoutId="showcase-active-template"
+                                            className="absolute inset-0 rounded-full bg-primary/20 border border-primary/30"
+                                            transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                                        />
+                                    )}
+                                    <span className="relative z-10">{t.name}</span>
+                                </button>
+                            ))}
+                        </div>
                         <Button
                             size="sm"
                             variant="ghost"
@@ -91,37 +100,47 @@ export function Showcase() {
                     </div>
                 </div>
 
-                <div className="mt-8 grid gap-6 md:grid-cols-3">
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
-                        <div className="text-white font-semibold mb-2">What Step1 extracts</div>
-                        <ul className="space-y-1 text-sm text-neutral-300">
-                            <li className="text-neutral-400">Layout structure & reusable components</li>
-                            <li className="text-neutral-400">Typography scale & spacing rhythm</li>
-                            <li className="text-neutral-400">Color tokens, shadows, and effects</li>
-                        </ul>
+                <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-neutral-400">
+                        <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                            Real render
+                        </span>
+                        <span className="text-neutral-700">•</span>
+                        <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                            Scroll + click
+                        </span>
+                        <span className="text-neutral-700">•</span>
+                        <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                            Components + layout
+                        </span>
+                        <span className="text-neutral-700">•</span>
+                        <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                            Tokens (colors / type / spacing)
+                        </span>
                     </div>
 
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-5 md:col-span-2">
-                        <div className="text-white font-semibold mb-2">New here? Start with verified templates.</div>
-                        <p className="text-sm text-neutral-400 leading-relaxed">
-                            We’ve curated a short list of sites that clone cleanly — it reduces surprises and helps you reach the aha moment faster.
-                        </p>
-                        <div className="mt-4 flex flex-wrap items-center gap-3">
-                            <Link
-                                href="/welcome"
-                                className="text-sm font-semibold text-white underline underline-offset-4 hover:text-neutral-200"
-                            >
-                                See templates
-                            </Link>
-                            <button
-                                className="text-sm font-semibold text-neutral-300 hover:text-white underline underline-offset-4"
-                                onClick={() => document.querySelector("#demo")?.scrollIntoView({ behavior: "smooth", block: "start" })}
-                            >
-                                Try the demo
-                            </button>
-                        </div>
+                    <div className="flex flex-wrap items-center gap-4">
+                        <Link
+                            href="/welcome"
+                            className="text-sm font-semibold text-white underline underline-offset-4 hover:text-neutral-200"
+                        >
+                            Start with verified templates
+                        </Link>
+                        <button
+                            className="text-sm font-semibold text-neutral-300 hover:text-white underline underline-offset-4"
+                            onClick={() =>
+                                document.querySelector("#demo")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                            }
+                        >
+                            Try the demo
+                        </button>
                     </div>
                 </div>
+
+                <p className="mt-5 text-xs text-neutral-500 leading-relaxed max-w-3xl">
+                    Apple / Stripe are our upper‑bound references for clone quality. For best first results, start with the verified
+                    templates list — especially on complex pages.
+                </p>
             </Container>
         </section>
     );
