@@ -1,33 +1,40 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { MousePointer2, Loader2, Sparkles, Wand2, Check, ArrowRight, Layout, Palette, Type, Globe, ExternalLink } from "lucide-react";
+import { MousePointer2, Loader2, Sparkles, Check, ArrowRight, Palette, Type, ExternalLink, Chrome } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { CHROME_WEBSTORE_URL, STEP1_TEMPLATES_URL } from "@/lib/links";
+import Link from "next/link";
 
 type Step = "browse" | "clone" | "edit" | "publish";
 
 export function InteractiveGuide() {
     const [currentStep, setCurrentStep] = useState<Step>("browse");
-    const [isHoveringExtension, setIsHoveringExtension] = useState(false);
-    const [editMode, setEditMode] = useState<"colors" | "layout" | "text" | null>(null);
     const [siteTheme, setSiteTheme] = useState<"light" | "dark" | "blue">("light");
+    const [headlineVariant, setHeadlineVariant] = useState<"original" | "rewrite">("original");
+
+    const reset = () => {
+        setCurrentStep("browse");
+        setSiteTheme("light");
+        setHeadlineVariant("original");
+    };
 
     const steps: { id: Step; label: string; desc: string }[] = [
-        { id: "browse", label: "Browse", desc: "Find any site" },
-        { id: "clone", label: "Clone", desc: "1-Click Capture" },
-        { id: "edit", label: "Edit", desc: "AI Enhance" },
-        { id: "publish", label: "Result", desc: "Production Ready" },
+        { id: "browse", label: "Browse", desc: "Pick a page" },
+        { id: "clone", label: "Clone", desc: "1 click" },
+        { id: "edit", label: "Edit", desc: "AI commands" },
+        { id: "publish", label: "Try it", desc: "Real site" },
     ];
 
     const getBrowserURL = () => {
         switch (currentStep) {
-            case "browse": return "awesome-design-inspiration.com";
-            case "clone": return "step1.new/cloning...";
-            case "edit": return "step1.app/editor/design-v1";
-            case "publish": return "timeless-elegance.step1.site";
+            case "browse": return "awwwards.com";
+            case "clone": return "step1.app/cloning…";
+            case "edit": return "step1.app/editor/landing-v1";
+            case "publish": return "step1.app/welcome";
             default: return "about:blank";
         }
     };
@@ -40,16 +47,19 @@ export function InteractiveGuide() {
     };
 
     const handleEditAction = (mode: "colors" | "layout" | "text") => {
-        setEditMode(mode);
         if (mode === "colors") {
             setSiteTheme(prev => prev === "light" ? "dark" : prev === "dark" ? "blue" : "light");
+            return;
+        }
+        if (mode === "text") {
+            setHeadlineVariant((prev) => (prev === "original" ? "rewrite" : "original"));
         }
     };
 
     return (
-        <section className="py-24 bg-neutral-950 relative overflow-hidden">
+        <section id="demo" className="py-24 bg-neutral-950 relative overflow-hidden border-t border-white/5 scroll-mt-20">
             {/* Background Ambience */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-purple-900/20 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-primary/15 rounded-full blur-[120px] pointer-events-none" />
 
             <Container className="relative z-10">
                 <div className="text-center mb-16">
@@ -57,16 +67,16 @@ export function InteractiveGuide() {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-300 mb-4"
+                        className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-primary mb-4"
                     >
                         <Sparkles className="w-3 h-3 mr-2" />
                         Interactive Demo
                     </motion.div>
                     <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                        See how <span className="text-gradient">Fast</span> it really is.
+                        Try the clone flow — right here.
                     </h2>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        Don't just watch a video. Try the flow yourself right here.
+                        Click the extension icon, watch the scan, then apply a couple AI-style edits.
                     </p>
                 </div>
 
@@ -82,7 +92,7 @@ export function InteractiveGuide() {
                                 className={cn(
                                     "px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2",
                                     currentStep === s.id
-                                        ? "bg-purple-600 text-white shadow-lg shadow-purple-900/20"
+                                        ? "bg-primary text-white shadow-lg shadow-black/20"
                                         : "text-muted-foreground hover:text-white"
                                 )}
                             >
@@ -129,19 +139,17 @@ export function InteractiveGuide() {
                                         currentStep === "browse" ? "opacity-100 hover:scale-110" : "opacity-30"
                                     )}
                                     onClick={handleExtensionClick}
-                                    onMouseEnter={() => currentStep === "browse" && setIsHoveringExtension(true)}
-                                    onMouseLeave={() => setIsHoveringExtension(false)}
                                 >
-                                    <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center shadow-lg transform active:scale-95 transition-transform">
+                                    <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-purple-500 flex items-center justify-center shadow-lg transform active:scale-95 transition-transform">
                                         <div className="w-4 h-4 border-2 border-white rounded-full flex items-center justify-center">
                                             <div className="w-1.5 h-1.5 bg-white rounded-full" />
                                         </div>
                                     </div>
 
                                     {currentStep === "browse" && (
-                                        <div className="absolute top-10 right-0 w-max px-3 py-1.5 bg-purple-600 text-white text-xs rounded-md shadow-xl animate-bounce z-50">
-                                            Click me!
-                                            <div className="absolute -top-1 right-3 w-2 h-2 bg-purple-600 rotate-45" />
+                                        <div className="absolute top-10 right-0 w-max px-3 py-1.5 bg-black text-white text-xs rounded-md shadow-xl z-50 border border-white/10">
+                                            Click Step1 to clone
+                                            <div className="absolute -top-1 right-3 w-2 h-2 bg-black rotate-45 border-l border-t border-white/10" />
                                         </div>
                                     )}
                                 </div>
@@ -198,8 +206,8 @@ export function InteractiveGuide() {
                                         className="absolute inset-0 bg-neutral-900/90 backdrop-blur-sm z-20 flex flex-col items-center justify-center p-8"
                                     >
                                         <div className="relative">
-                                            <div className="absolute inset-0 bg-purple-500 blur-2xl opacity-20 animate-pulse" />
-                                            <Loader2 className="w-16 h-16 text-purple-500 animate-spin relative z-10" />
+                                            <div className="absolute inset-0 bg-primary blur-2xl opacity-20 animate-pulse" />
+                                            <Loader2 className="w-16 h-16 text-primary animate-spin relative z-10" />
                                         </div>
                                         <h3 className="mt-8 text-2xl font-bold text-white">Cloning to Step1...</h3>
                                         <div className="mt-4 flex flex-col gap-2 w-full max-w-xs text-sm text-neutral-400 font-mono">
@@ -234,7 +242,7 @@ export function InteractiveGuide() {
                                     </motion.div>
                                 )}
 
-                                {(currentStep === "edit" || currentStep === "publish") && (
+                                {currentStep === "edit" && (
                                     <motion.div
                                         key="editor-view"
                                         initial={{ opacity: 0 }}
@@ -246,20 +254,11 @@ export function InteractiveGuide() {
                                                     "bg-white text-black"
                                         )}
                                     >
-                                        {currentStep === "edit" ? (
-                                            <div className="absolute top-4 left-4 right-4 bottom-4 border-2 border-dashed border-purple-500/30 rounded-lg pointer-events-none z-10 flex items-start justify-center pt-2">
-                                                <span className="bg-purple-500/20 text-purple-600 px-2 py-0.5 text-[10px] rounded uppercase font-bold tracking-wider backdrop-blur-md">
-                                                    Editor Active
-                                                </span>
-                                            </div>
-                                        ) : (
-                                            <div className="absolute top-4 right-4 z-10">
-                                                <div className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center gap-2 animate-in fade-in slide-in-from-top-4 duration-500">
-                                                    <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                                                    Live
-                                                </div>
-                                            </div>
-                                        )}
+                                        <div className="absolute top-4 left-4 right-4 bottom-4 border-2 border-dashed border-primary/30 rounded-lg pointer-events-none z-10 flex items-start justify-center pt-2">
+                                            <span className="bg-black/60 text-white px-2 py-0.5 text-[10px] rounded uppercase font-bold tracking-wider backdrop-blur-md border border-white/10">
+                                                Editor preview
+                                            </span>
+                                        </div>
 
                                         <div className="flex-1 p-8 md:p-12 overflow-y-auto">
                                             <nav className="flex justify-between items-center mb-16 opacity-80">
@@ -279,14 +278,24 @@ export function InteractiveGuide() {
                                                             siteTheme === "blue" ? "text-blue-100" : "text-gray-900"
                                                     )}
                                                 >
-                                                    Timeless<br />Elegance
+                                                    {headlineVariant === "rewrite" ? (
+                                                        <>
+                                                            Launch<br />Faster
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            Timeless<br />Elegance
+                                                        </>
+                                                    )}
                                                 </motion.h1>
                                                 <p className={cn(
                                                     "text-xl mb-8 max-w-md",
                                                     siteTheme === "dark" ? "text-gray-400" :
                                                         siteTheme === "blue" ? "text-blue-200" : "text-gray-500"
                                                 )}>
-                                                    A curated collection of minimal objects for the modern workspace.
+                                                    {headlineVariant === "rewrite"
+                                                        ? "Clone a landing you love, then rewrite it in minutes with AI edits."
+                                                        : "A curated collection of minimal objects for the modern workspace."}
                                                 </p>
                                                 <div className={cn(
                                                     "inline-block px-8 py-3 rounded-full text-sm font-medium transition-colors",
@@ -295,6 +304,44 @@ export function InteractiveGuide() {
                                                 )}>
                                                     Explore Collection
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                )}
+
+                                {currentStep === "publish" && (
+                                    <motion.div
+                                        key="ready-view"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        className="h-full w-full bg-neutral-950 text-white flex items-center justify-center p-8"
+                                    >
+                                        <div className="max-w-md text-center">
+                                            <div className="w-14 h-14 rounded-full bg-green-500/15 border border-green-500/30 flex items-center justify-center mx-auto">
+                                                <Check className="w-7 h-7 text-green-400" />
+                                            </div>
+                                            <h3 className="mt-6 text-2xl font-bold">Your clone is ready.</h3>
+                                            <p className="mt-2 text-neutral-300 leading-relaxed">
+                                                Install the extension to clone a real page, then sign in only when you want to save and keep editing.
+                                            </p>
+
+                                            <div className="mt-6 flex flex-col gap-3">
+                                                <Button
+                                                    className="h-11 rounded-full font-semibold"
+                                                    onClick={() => window.open(CHROME_WEBSTORE_URL, "_blank", "noopener,noreferrer")}
+                                                >
+                                                    <Chrome className="w-4 h-4 mr-2" />
+                                                    Add to Chrome
+                                                </Button>
+                                                <Link
+                                                    href={STEP1_TEMPLATES_URL}
+                                                    className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-neutral-300 hover:text-white"
+                                                >
+                                                    Start with verified templates <ExternalLink className="w-4 h-4 opacity-70" />
+                                                </Link>
+                                                <Button variant="ghost" className="text-neutral-300 hover:text-white" onClick={reset}>
+                                                    Replay demo
+                                                </Button>
                                             </div>
                                         </div>
                                     </motion.div>
@@ -314,14 +361,14 @@ export function InteractiveGuide() {
                                     exit={{ opacity: 0, y: -20 }}
                                     className="space-y-4"
                                 >
-                                    <h3 className="text-2xl font-bold">Find your inspiration</h3>
+                                    <h3 className="text-2xl font-bold">Pick a page</h3>
                                     <p className="text-muted-foreground">
-                                        Navigate to any website on the internet. Step1 works with any stack, framework, or layout.
+                                        For the best first run, start with a clean marketing page or one of our verified templates.
                                     </p>
                                     <div className="p-4 bg-white/5 rounded-lg border border-white/10 text-sm md:text-base">
                                         <div className="flex items-start gap-3">
-                                            <MousePointer2 className="w-5 h-5 text-purple-400 mt-0.5 shrink-0" />
-                                            <span>The extension icon glows when a site is clone-ready. <strong className="text-white">Click the icon in the preview</strong> to start.</span>
+                                            <MousePointer2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                                            <span><strong className="text-white">Click the Step1 icon</strong> (top right) to start cloning.</span>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -335,20 +382,20 @@ export function InteractiveGuide() {
                                     exit={{ opacity: 0, y: -20 }}
                                     className="space-y-4"
                                 >
-                                    <h3 className="text-2xl font-bold">Understanding the Vibe</h3>
+                                    <h3 className="text-2xl font-bold">Cloning…</h3>
                                     <p className="text-muted-foreground">
-                                        Step1 doesn't just copy HTML. It uses vision models to understand the *design system*.
+                                        Step1 captures structure and design tokens so the output stays editable and consistent.
                                     </p>
                                     <div className="space-y-2">
                                         <div className="h-2 bg-white/10 rounded overflow-hidden">
                                             <motion.div
-                                                className="h-full bg-purple-500"
+                                                className="h-full bg-primary"
                                                 initial={{ width: "0%" }}
                                                 animate={{ width: "100%" }}
                                                 transition={{ duration: 2 }}
                                             />
                                         </div>
-                                        <p className="text-xs text-right text-purple-400 font-mono">Processing...</p>
+                                        <p className="text-xs text-right text-neutral-400 font-mono">Processing...</p>
                                     </div>
                                 </motion.div>
                             )}
@@ -362,40 +409,36 @@ export function InteractiveGuide() {
                                     className="space-y-6"
                                 >
                                     <div>
-                                        <h3 className="text-2xl font-bold">Make it yours</h3>
+                                        <h3 className="text-2xl font-bold">Edit with intent</h3>
                                         <p className="text-muted-foreground mt-2">
-                                            You have full control. Use AI commands or manual controls to reshape the site.
+                                            Try a couple “AI commands” — the preview updates like an editor would.
                                         </p>
                                     </div>
 
-                                    <div className="grid gap-3 relative">
-                                        {/* Guide Overlay for the Button */}
-                                        <div className="absolute -left-4 -top-4 w-1 h-full bg-purple-500 rounded-full animate-pulse" />
-
+                                    <div className="grid gap-3">
                                         <Button
                                             variant="outline"
-                                            className="justify-start h-12 text-left bg-purple-500/10 hover:bg-purple-500/20 border-purple-500/50 text-white relative overflow-hidden group"
+                                            className="justify-start h-12 text-left bg-white/5 hover:bg-white/10 border-white/10 text-white rounded-xl"
                                             onClick={() => handleEditAction("colors")}
                                         >
-                                            <div className="absolute inset-0 bg-purple-500/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                                            <Palette className="w-4 h-4 mr-3 text-purple-400" />
-                                            <span>Reshuffle Theme / Colors</span>
-                                            <span className="ml-auto text-[10px] bg-purple-500 text-white px-1.5 rounded">TRY ME</span>
+                                            <Palette className="w-4 h-4 mr-3 text-primary" />
+                                            <span className="font-semibold">“Make it dark”</span>
                                         </Button>
                                         <Button
                                             variant="outline"
-                                            className="justify-start h-12 text-left bg-white/5 hover:bg-white/10 border-white/10 opacity-50 cursor-not-allowed"
+                                            className="justify-start h-12 text-left bg-white/5 hover:bg-white/10 border-white/10 text-white rounded-xl"
+                                            onClick={() => handleEditAction("text")}
                                         >
-                                            <Type className="w-4 h-4 mr-3 text-blue-400" />
-                                            <span>Change Typography (Coming Soon)</span>
+                                            <Type className="w-4 h-4 mr-3 text-primary" />
+                                            <span className="font-semibold">“Rewrite the headline”</span>
                                         </Button>
                                     </div>
 
                                     <Button
                                         onClick={() => setCurrentStep("publish")}
-                                        className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white border-0"
+                                        className="w-full rounded-xl"
                                     >
-                                        Finish Editing <ArrowRight className="w-4 h-4 ml-2" />
+                                        Finish demo <ArrowRight className="w-4 h-4 ml-2" />
                                     </Button>
                                 </motion.div>
                             )}
@@ -408,27 +451,35 @@ export function InteractiveGuide() {
                                     className="space-y-6 text-center lg:text-left"
                                 >
                                     <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto lg:mx-0 mb-4">
-                                        <Check className="w-8 h-8 text-green-500" />
+                                        <Check className="w-8 h-8 text-green-400" />
                                     </div>
                                     <div>
-                                        <h3 className="text-2xl font-bold">Live in Seconds</h3>
+                                        <h3 className="text-2xl font-bold">Your clone is ready.</h3>
                                         <p className="text-muted-foreground mt-2">
-                                            Your unique site is deployed globally.
+                                            Install the extension to clone a real page. Sign in only when you want to save and keep editing.
                                         </p>
                                     </div>
-                                    <div className="flex items-center gap-2 p-3 bg-green-900/20 border border-green-500/30 rounded text-sm text-green-300 font-mono">
-                                        <Globe className="w-4 h-4" />
-                                        <span className="truncate">timeless-elegance.step1.site</span>
-                                        <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
-                                    </div>
 
-                                    <Button
-                                        onClick={() => setCurrentStep("browse")}
-                                        variant="ghost"
-                                        className="text-muted-foreground hover:text-white"
-                                    >
-                                        Start Over
-                                    </Button>
+                                    <div className="flex flex-col gap-3">
+                                        <Button
+                                            className="w-full rounded-xl"
+                                            onClick={() => window.open(CHROME_WEBSTORE_URL, "_blank", "noopener,noreferrer")}
+                                        >
+                                            <Chrome className="w-4 h-4 mr-2" />
+                                            Add to Chrome
+                                        </Button>
+
+                                        <Link
+                                            href={STEP1_TEMPLATES_URL}
+                                            className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-neutral-300 hover:text-white"
+                                        >
+                                            Open templates <ExternalLink className="w-4 h-4 opacity-70" />
+                                        </Link>
+
+                                        <Button variant="ghost" className="text-neutral-300 hover:text-white" onClick={reset}>
+                                            Replay demo
+                                        </Button>
+                                    </div>
                                 </motion.div>
                             )}
                         </AnimatePresence>

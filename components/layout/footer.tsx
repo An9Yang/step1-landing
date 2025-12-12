@@ -1,83 +1,64 @@
-import { Container } from "@/components/ui/container";
 import Link from "next/link";
-import { Twitter, Github, Linkedin, ArrowRight } from "lucide-react";
+import { Container } from "@/components/ui/container";
+import { CHROME_WEBSTORE_URL } from "@/lib/links";
+import { Chrome } from "lucide-react";
 
 export function Footer() {
     return (
-        <footer className="border-t border-white/10 bg-neutral-950 pt-20 pb-10 text-sm">
+        <footer className="border-t border-white/10 bg-neutral-950 pt-16 pb-10 text-sm">
             <Container>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                    {/* Brand Column */}
-                    <div className="space-y-4">
-                        <Link href="/" className="font-bold text-2xl tracking-tighter text-white">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                    <div className="md:col-span-2 space-y-4">
+                        <Link href="/" className="font-bold text-2xl tracking-tight text-white">
                             Step1
                         </Link>
-                        <p className="text-muted-foreground leading-relaxed max-w-xs">
-                            The intelligent interface for Vibe Coding. Clone, edit, and ship in seconds.
+                        <p className="text-neutral-400 leading-relaxed max-w-md">
+                            Clone a landing page you like, then make it yours with AI edits — copy, colors, and layout.
                         </p>
-                        <div className="flex gap-4 pt-2">
-                            <Link href="#" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
-                                <Twitter className="w-4 h-4 text-muted-foreground" />
-                            </Link>
-                            <Link href="#" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
-                                <Github className="w-4 h-4 text-muted-foreground" />
-                            </Link>
-                            <Link href="#" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
-                                <Linkedin className="w-4 h-4 text-muted-foreground" />
-                            </Link>
-                        </div>
+
+                        <a
+                            href={CHROME_WEBSTORE_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 font-semibold shadow-[0_0_20px_rgba(45,102,236,0.35)] hover:bg-primary/90 transition-colors"
+                        >
+                            <Chrome className="w-4 h-4" />
+                            Add to Chrome
+                        </a>
+
+                        <p className="text-xs text-neutral-500">
+                            Sign in only when your clone is ready to save.
+                        </p>
                     </div>
 
-                    {/* Links Column 1 */}
-                    <div className="space-y-4">
-                        <h4 className="font-bold text-white">Product</h4>
-                        <ul className="space-y-3 text-muted-foreground">
-                            <li><Link href="#" className="hover:text-purple-400 transition-colors">Features</Link></li>
-                            <li><Link href="#" className="hover:text-purple-400 transition-colors">Integrations</Link></li>
-                            <li><Link href="#" className="hover:text-purple-400 transition-colors">Changelog</Link></li>
-                            <li><Link href="#" className="hover:text-purple-400 transition-colors">Pricing</Link></li>
+                    <div className="space-y-3">
+                        <h4 className="font-semibold text-white">Product</h4>
+                        <ul className="space-y-2 text-neutral-400">
+                            <li><Link href="/#showcase" className="hover:text-white transition-colors">Showcase</Link></li>
+                            <li><Link href="/#demo" className="hover:text-white transition-colors">Demo</Link></li>
+                            <li><Link href="/#how-it-works" className="hover:text-white transition-colors">How it works</Link></li>
+                            <li><Link href="/#features" className="hover:text-white transition-colors">Features</Link></li>
                         </ul>
                     </div>
 
-                    {/* Links Column 2 */}
-                    <div className="space-y-4">
-                        <h4 className="font-bold text-white">Resources</h4>
-                        <ul className="space-y-3 text-muted-foreground">
-                            <li><Link href="#" className="hover:text-purple-400 transition-colors">Documentation</Link></li>
-                            <li><Link href="#" className="hover:text-purple-400 transition-colors">API Reference</Link></li>
-                            <li><Link href="#" className="hover:text-purple-400 transition-colors">Community</Link></li>
-                            <li><Link href="#" className="hover:text-purple-400 transition-colors">Blog</Link></li>
+                    <div className="space-y-3">
+                        <h4 className="font-semibold text-white">More</h4>
+                        <ul className="space-y-2 text-neutral-400">
+                            <li><Link href="/welcome" className="hover:text-white transition-colors">Templates</Link></li>
+                            <li><Link href="/login" className="hover:text-white transition-colors">Sign in</Link></li>
+                            <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
+                            <li><Link href="/terms" className="hover:text-white transition-colors">Terms</Link></li>
                         </ul>
-                    </div>
-
-                    {/* Newsletter Column */}
-                    <div className="space-y-4">
-                        <h4 className="font-bold text-white">Stay Updated</h4>
-                        <p className="text-muted-foreground text-xs leading-relaxed">
-                            Join our newsletter for the latest AI coding tips and feature updates.
-                        </p>
-                        <form className="flex gap-2">
-                            <input
-                                type="email"
-                                placeholder="Enter your email"
-                                className="bg-white/5 border border-white/10 rounded px-3 py-2 text-xs w-full focus:outline-none focus:border-purple-500/50 transition-colors"
-                            />
-                            <button className="bg-purple-600 hover:bg-purple-500 text-white rounded px-3 py-2 transition-colors">
-                                <ArrowRight className="w-4 h-4" />
-                            </button>
-                        </form>
                     </div>
                 </div>
 
-                <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-                    <p>© {new Date().getFullYear()} Step1 Inc. All rights reserved.</p>
-                    <div className="flex gap-8">
-                        <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Cookie Policy</Link>
-                    </div>
+                <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-neutral-500">
+                    <p>© {new Date().getFullYear()} Step1. All rights reserved.</p>
+                    <p className="text-neutral-600">MVP preview</p>
                 </div>
             </Container>
         </footer>
     );
 }
+
+

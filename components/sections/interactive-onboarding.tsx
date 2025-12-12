@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Layout, Palette, ArrowUp, Send, Globe, Check, MessageSquare } from "lucide-react";
+import { Sparkles, Layout, Palette, ArrowUp, Send, Globe, Check, MessageSquare, Chrome } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // UX Component: Coachmark
@@ -82,7 +82,7 @@ export function InteractiveOnboarding() {
     };
 
     return (
-        <section className="py-24 bg-neutral-950 relative overflow-hidden border-t border-white/5">
+        <section id="onboarding" className="py-24 bg-neutral-950 relative overflow-hidden border-t border-white/5 scroll-mt-20">
             <Container>
                 {/* 1. Header Narrative */}
                 <div className="text-center mb-10 h-32 flex flex-col items-center justify-center">
@@ -423,16 +423,30 @@ export function InteractiveOnboarding() {
                                             <Check className="w-12 h-12 text-black" strokeWidth={4} />
                                         </div>
                                         <h2 className="text-4xl font-bold text-white mb-4">You're Online!</h2>
-                                        <p className="text-neutral-400 mb-8 max-w-md">
+                                        <p className="text-neutral-400 mb-6 max-w-md">
                                             Your site has been successfully cloned, customized, and deployed.
                                         </p>
                                         <div className="flex items-center gap-3 bg-white/10 px-6 py-3 rounded-lg border border-white/10 mb-8">
                                             <Globe className="w-4 h-4 text-green-400" />
                                             <span className="text-white font-mono">alex.step1.site</span>
                                         </div>
-                                        <Button onClick={handleReset} variant="outline" className="border-white/10 hover:bg-white/10 text-white">
-                                            Create Another Site
-                                        </Button>
+
+                                        {/* Primary CTA after demo completion */}
+                                        <div className="flex flex-col items-center gap-4">
+                                            <Button
+                                                size="lg"
+                                                className="h-14 px-8 text-lg bg-[#2D66EC] hover:bg-[#2253C6] text-white rounded-full font-bold shadow-[0_0_30px_rgba(45,102,236,0.5)] transition-all hover:scale-105"
+                                            >
+                                                <Chrome className="w-5 h-5 mr-2" />
+                                                Try it on a Real Site
+                                            </Button>
+                                            <button
+                                                onClick={handleReset}
+                                                className="text-neutral-500 hover:text-white text-sm transition-colors"
+                                            >
+                                                or replay the demo
+                                            </button>
+                                        </div>
                                     </motion.div>
                                 )}
 

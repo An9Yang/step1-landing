@@ -1,9 +1,4 @@
 import * as React from "react";
-// import { Slot } from "@radix-ui/react-slot"; 
-// Removed unused import to fix lint error
-// Actually, for "Zero-dependency strategy" mentioned in PRD, I should stick to simple HTML button unless I need polymorphism. 
-// "Zero-dependency UI" -> I'll avoid Radix if possible or keep it minimal. 
-// I'll implementing a standard button without Slot for now to stay zero-dep as requested, or just use 'asChild' pattern if I really need it, but let's keep it simple.
 
 import { cn } from "@/lib/utils";
 
@@ -28,7 +23,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                         "border border-input bg-background hover:bg-accent hover:text-accent-foreground":
                             variant === "outline",
                         "hover:bg-accent hover:text-accent-foreground": variant === "ghost",
-                        "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg hover:shadow-xl hover:opacity-90 transition-all duration-300":
+                        "bg-primary text-primary-foreground shadow-[0_0_26px_rgba(45,102,236,0.35)] hover:bg-primary/90 hover:shadow-[0_0_34px_rgba(45,102,236,0.45)] transition-shadow":
                             variant === "glow",
                         "h-10 px-4 py-2": size === "default",
                         "h-9 rounded-md px-3": size === "sm",

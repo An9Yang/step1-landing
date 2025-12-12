@@ -1,53 +1,99 @@
 "use client";
 
-import { Container } from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
-import { Header } from "@/components/layout/header"; // Reusing Header for continuity
-import { ArrowRight, Star } from "lucide-react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
+import { Header } from "@/components/layout/header";
+import { Container } from "@/components/ui/container";
+import { ExternalLink, MousePointer2, ShieldCheck } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+type TemplateSite = {
+    title: string;
+    desc: string;
+    url: string;
+    badge?: "Verified";
+};
 
 export default function WelcomePage() {
-    const templates = [
-        { title: "SaaS Landing", desc: "Perfect for startups.", color: "bg-blue-500" },
-        { title: "Portfolio V1", desc: "Minimalist personal site.", color: "bg-purple-500" },
-        { title: "E-commerce Shop", desc: "High conversion layout.", color: "bg-orange-500" },
-        { title: "Blog Template", desc: "Content focused.", color: "bg-green-500" },
-    ];
+    const sites: TemplateSite[] = useMemo(
+        () => [
+            { title: "Stripe", desc: "Clean SaaS landing patterns.", url: "https://stripe.com", badge: "Verified" },
+            { title: "Vercel", desc: "Modern developer-first marketing pages.", url: "https://vercel.com", badge: "Verified" },
+            { title: "Linear", desc: "Strong typography and tight spacing rhythm.", url: "https://linear.app", badge: "Verified" },
+            { title: "Notion", desc: "Content-forward layouts.", url: "https://www.notion.so" },
+            { title: "Framer Templates", desc: "Pick a template-style landing to clone.", url: "https://www.framer.com/templates/" },
+            { title: "Awwwards", desc: "Browse inspiration — start with simpler pages.", url: "https://www.awwwards.com/" },
+        ],
+        []
+    );
+
+    const [lastOpened, setLastOpened] = useState<string | null>(null);
+
+    const openSite = (s: TemplateSite) => {
+        window.open(s.url, "_blank", "noopener,noreferrer");
+        setLastOpened(s.title);
+    };
 
     return (
-        <main className="min-h-screen bg-background">
+        <main className="min-h-screen bg-background text-foreground">
             <Header />
-            <div className="pt-32 pb-20">
+
+            <div className="pt-28 pb-20">
                 <Container>
-                    <div className="text-center mb-16 space-y-4">
-                        <div className="inline-flex items-center justify-center p-3 bg-green-500/10 text-green-400 rounded-full mb-4">
-                            <Star className="w-6 h-6 mr-2 fill-current" />
-                            <span className="font-bold">Step1 Installed Successfully</span>
+                    <div className="max-w-3xl mx-auto text-center space-y-4">
+                        <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">
+                            <ShieldCheck className="w-4 h-4" />
+                            <span className="font-semibold text-sm">Step1 installed</span>
                         </div>
-                        <h1 className="text-4xl md:text-6xl font-bold">Welcome to Step1</h1>
-                        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                            You're ready to clone. Visit any website and click the new icon in your toolbar, or start with one of our verified templates below.
+
+                        <h1 className="text-4xl md:text-6xl font-bold text-white">Pick a site to clone</h1>
+                        <p className="text-lg text-neutral-400 leading-relaxed">
+                            To hit the aha moment fast, start with a{" "}
+                            <span className="text-white font-semibold">Verified</span> template. When the site opens,{" "}
+                            <span className="text-white font-semibold">click the Step1 icon</span> in your Chrome toolbar.
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {templates.map((t, i) => (
-                            <div key={i} className="group relative aspect-[4/5] rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all cursor-pointer">
-                                <div className={`absolute inset-0 opacity-20 ${t.color}`} />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent flex flex-col justify-end p-6">
-                                    <h3 className="text-xl font-bold mb-1">{t.title}</h3>
-                                    <p className="text-sm text-neutral-400">{t.desc}</p>
-                                    <div className="mt-4 flex items-center text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity text-white">
-                                        Start Cloning <ArrowRight className="w-4 h-4 ml-2" />
-                                    </div>
-                                </div>
+                    {lastOpened && (
+                        <div className="mt-10 max-w-4xl mx-auto rounded-2xl border border-primary/30 bg-primary/10 p-4 flex items-start gap-3">
+                            <MousePointer2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                            <div className="text-sm text-neutral-300 leading-relaxed">
+                                <div className="text-white font-semibold mb-1">Quick reminder</div>
+                                On <span className="text-white font-semibold">{lastOpened}</span>, click the Step1 icon (top right) to{" "}
+                                <span className="text-white font-semibold">Clone</span>.
                             </div>
+                        </div>
+                    )}
+
+                    <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {sites.map((s) => (
+                            <button
+                                key={s.title}
+                                onClick={() => openSite(s)}
+                                className="group text-left rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition-colors"
+                            >
+                                <div className="flex items-start justify-between gap-3">
+                                    <div>
+                                        <div className="text-white font-semibold text-lg">{s.title}</div>
+                                        <p className="mt-2 text-sm text-neutral-400 leading-relaxed">{s.desc}</p>
+                                    </div>
+                                    {s.badge && (
+                                        <div className={cn("px-2 py-1 rounded-full text-[11px] font-semibold border", "bg-white/5 text-white border-white/10")}>
+                                            {s.badge}
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-neutral-300 group-hover:text-white transition-colors">
+                                    Open site <ExternalLink className="w-4 h-4 opacity-70" />
+                                </div>
+                            </button>
                         ))}
                     </div>
 
-                    <div className="mt-16 text-center">
-                        <Link href="/">
-                            <Button variant="ghost">Return to Home</Button>
+                    <div className="mt-14 text-center">
+                        <Link href="/" className="text-sm font-semibold text-neutral-300 hover:text-white underline underline-offset-4">
+                            Back to home
                         </Link>
                     </div>
                 </Container>
@@ -55,3 +101,5 @@ export default function WelcomePage() {
         </main>
     );
 }
+
+

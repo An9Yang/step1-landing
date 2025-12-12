@@ -41,7 +41,7 @@ export function CapabilityComparison() {
     }, [isDragging]);
 
     return (
-        <section className="py-32 bg-neutral-950 border-t border-white/5">
+        <section id="comparison" className="py-32 bg-neutral-950 border-t border-white/5 scroll-mt-20">
             <Container>
                 <div className="text-center mb-16 space-y-4">
                     <h2 className="text-4xl md:text-5xl font-bold text-white">

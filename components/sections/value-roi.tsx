@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { Container } from "@/components/ui/container";
-import { DollarSign, Clock, TrendingUp } from "lucide-react";
+import { DollarSign, Clock, TrendingUp, Info, Chrome, Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 export function ValueRoi() {
@@ -19,7 +20,7 @@ export function ValueRoi() {
     const savedMoney = savedHours * rate;
 
     return (
-        <section className="py-32 bg-neutral-900 border-t border-white/5">
+        <section id="roi" className="py-32 bg-neutral-900 border-t border-white/5 scroll-mt-20">
             <Container>
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     <div>
@@ -107,7 +108,47 @@ export function ValueRoi() {
                                     <div className="text-xs text-neutral-500">With Step1</div>
                                 </div>
                             </div>
+
+                            {/* Calculation Basis */}
+                            <div className="pt-6 flex items-start gap-2 text-xs text-neutral-500">
+                                <Info className="w-3 h-3 mt-0.5 shrink-0" />
+                                <span>Based on average dev time: 40h to build a responsive landing page from scratch vs 4h with Step1 (clone + customize).</span>
+                            </div>
                         </div>
+                    </div>
+                </div>
+
+                {/* Pricing + Final CTA */}
+                <div className="mt-24 text-center">
+                    <div className="inline-flex flex-col items-center gap-6 p-8 rounded-2xl bg-black/50 border border-white/10">
+                        <h3 className="text-2xl font-bold text-white">Start for Free</h3>
+
+                        <div className="flex flex-wrap justify-center gap-6 text-sm text-neutral-400">
+                            <div className="flex items-center gap-2">
+                                <Check className="w-4 h-4 text-green-500" />
+                                <span>3 free clones / month</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Check className="w-4 h-4 text-green-500" />
+                                <span>AI editing included</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Check className="w-4 h-4 text-green-500" />
+                                <span>No credit card required</span>
+                            </div>
+                        </div>
+
+                        <Button
+                            size="lg"
+                            className="h-14 px-10 text-lg bg-[#2D66EC] hover:bg-[#2253C6] text-white rounded-full font-bold shadow-[0_0_30px_rgba(45,102,236,0.5)] transition-all hover:scale-105"
+                        >
+                            <Chrome className="w-5 h-5 mr-2" />
+                            Add to Chrome - It's Free
+                        </Button>
+
+                        <p className="text-xs text-neutral-500">
+                            Pro plan: $19/mo for unlimited clones
+                        </p>
                     </div>
                 </div>
             </Container>
