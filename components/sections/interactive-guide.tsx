@@ -448,13 +448,20 @@ export function InteractiveGuide() {
                         </div>
                     </motion.div>
 
-                    {/* Narrative Rail */}
-                    <div className="flex flex-col gap-6">
+                    {/* Narrative Rail - Redesigned */}
+                    <div className="flex flex-col gap-8 pt-4">
                         <div>
-                            <div className="text-xs font-mono text-neutral-500 mb-3">Flow</div>
-                            <ol className="relative border-l border-white/10 pl-6 space-y-6">
+                            <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 mb-6 pl-12">
+                                The Workflow
+                            </div>
+                            <div className="relative space-y-0">
+                                {/* Continuous vertical line background */}
+                                <div className="absolute left-[39px] top-4 bottom-10 w-px bg-white/10" />
+
                                 {railSteps.map((s, idx) => {
                                     const isActive = s.id === currentStep;
+                                    const isPast = railSteps.findIndex(step => step.id === currentStep) > idx;
+
                                     const onClick = () => {
                                         if (s.id === "browse") return reset();
                                         if (s.id === "clone") return startClone();
@@ -462,27 +469,56 @@ export function InteractiveGuide() {
                                     };
 
                                     return (
-                                        <li key={s.id} className="relative">
-                                            <div
-                                                className={cn(
-                                                    "absolute -left-[9px] top-1 w-4 h-4 rounded-full border flex items-center justify-center",
+                                        <button
+                                            key={s.id}
+                                            type="button"
+                                            onClick={onClick}
+                                            className="group relative flex w-full items-start gap-6 py-4 text-left transition-colors"
+                                        >
+                                            {/* Number */}
+                                            <span className={cn(
+                                                "w-8 text-right font-mono text-[10px] leading-6 transition-colors duration-300 pt-0.5",
+                                                isActive ? "text-primary" : "text-neutral-600 group-hover:text-neutral-400"
+                                            )}>
+                                                {String(idx + 1).padStart(2, "0")}
+                                            </span>
+
+                                            {/* Timeline & Dot */}
+                                            <div className="relative flex flex-col items-center">
+                                                <div className={cn(
+                                                    "z-10 flex h-3 w-3 items-center justify-center rounded-full border transition-all duration-500 mt-2",
                                                     isActive
-                                                        ? "border-primary/60 bg-primary/20"
-                                                        : "border-white/15 bg-black/40"
-                                                )}
-                                            >
-                                                <div className={cn("w-1.5 h-1.5 rounded-full", isActive ? "bg-primary" : "bg-white/30")} />
+                                                        ? "border-primary bg-primary shadow-[0_0_10px_rgba(59,130,246,0.5)] scale-110"
+                                                        : isPast
+                                                            ? "border-primary/50 bg-primary/20"
+                                                            : "border-white/10 bg-neutral-900 group-hover:border-white/30"
+                                                )}>
+                                                    <div className={cn(
+                                                        "h-1 w-1 rounded-full transition-colors",
+                                                        isActive ? "bg-white" : "bg-transparent"
+                                                    )} />
+                                                </div>
                                             </div>
 
-                                            <button type="button" onClick={onClick} className="text-left group w-full">
-                                                <div className="text-[10px] font-mono text-neutral-600">{String(idx + 1).padStart(2, "0")}</div>
-                                                <div className={cn("font-semibold", isActive ? "text-white" : "text-neutral-300 group-hover:text-white")}> {s.label}</div>
-                                                <div className="text-sm text-neutral-400 leading-relaxed">{s.desc}</div>
-                                            </button>
-                                        </li>
+                                            {/* Content */}
+                                            <div className="flex-1 pt-0.5">
+                                                <h3 className={cn(
+                                                    "text-sm font-semibold tracking-tight transition-colors duration-300",
+                                                    isActive ? "text-white" : "text-neutral-400 group-hover:text-neutral-200"
+                                                )}>
+                                                    {s.label}
+                                                </h3>
+                                                <p className={cn(
+                                                    "mt-1 text-xs leading-relaxed transition-colors duration-300",
+                                                    isActive ? "text-neutral-300" : "text-neutral-600 group-hover:text-neutral-500"
+                                                )}>
+                                                    {s.desc}
+                                                </p>
+                                            </div>
+                                        </button>
                                     );
                                 })}
-                            </ol>
+                            </div>
                         </div>
 
                         <div className="space-y-3">
