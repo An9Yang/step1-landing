@@ -275,27 +275,48 @@ export function InteractiveGuide() {
     };
 
     return (
-        <section id="demo" className="py-24 bg-neutral-950 relative overflow-hidden border-t border-white/5 scroll-mt-20">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-primary/15 rounded-full blur-[120px] pointer-events-none" />
+        <section id="demo" className="min-h-screen flex flex-col justify-center bg-neutral-950 relative overflow-hidden snap-start snap-always py-16 md:py-20">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
 
             <Container className="relative z-10">
-                <div className="text-center mb-14">
+                <div className="text-center mb-10 md:mb-12">
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-primary mb-4"
+                        transition={{ duration: 0.6 }}
+                        className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-primary mb-5"
                     >
                         <Sparkles className="w-3 h-3 mr-2" />
                         Interactive Demo
                     </motion.div>
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4">Click once. See the flow.</h2>
-                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        No login required here. Click the Step1 icon, watch the clone, then apply a couple AI-style edits.
-                    </p>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="text-3xl md:text-5xl font-bold mb-4"
+                    >
+                        Click once. See the flow.
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 15 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto"
+                    >
+                        No login required. Click the Step1 icon, watch the clone, then apply AI-style edits.
+                    </motion.p>
                 </div>
 
-                <div className="grid lg:grid-cols-[1fr_360px] gap-10 items-start max-w-6xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.3 }}
+                    className="grid lg:grid-cols-[1fr_320px] gap-8 items-start max-w-5xl mx-auto"
+                >
                     {/* Demo Window */}
                     <motion.div
                         layout
@@ -576,7 +597,7 @@ export function InteractiveGuide() {
                             )}
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </Container>
         </section>
     );

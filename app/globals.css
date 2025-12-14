@@ -105,3 +105,37 @@
 .glow-effect:hover::before {
   @apply opacity-50;
 }
+
+/* Scroll snap enhancements */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Shine animation for buttons */
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+.group:hover .group-hover\:animate-shine {
+  animation: shine 0.75s ease-out;
+}

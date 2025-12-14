@@ -30,17 +30,23 @@ export function Showcase() {
     );
 
     return (
-        <section id="showcase" className="py-24 md:py-32 bg-neutral-950 border-t border-white/5 scroll-mt-20">
+        <section id="showcase" className="min-h-screen flex flex-col justify-center bg-neutral-950 snap-start snap-always py-16 md:py-20">
             <Container>
-                <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-10">
-                    <div className="max-w-2xl space-y-3">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between mb-8"
+                >
+                    <div className="max-w-xl space-y-3">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 w-fit">
                             <Sparkles className="w-4 h-4 text-primary" />
                             <span className="text-xs font-mono tracking-wider uppercase text-primary">Showcase</span>
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-bold text-white">Proof of fidelity — scroll the clone.</h2>
-                        <p className="text-neutral-400 text-lg leading-relaxed">
-                            This is a real render (not a screenshot). Scroll and click around to feel what “1‑click clone” can look like.
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">Proof of fidelity — scroll the clone.</h2>
+                        <p className="text-neutral-400 text-base md:text-lg leading-relaxed">
+                            Real render, not a screenshot. Scroll and click to feel what 1-click clone looks like.
                         </p>
                     </div>
 
@@ -76,71 +82,64 @@ export function Showcase() {
                             Open <ExternalLink className="w-4 h-4" />
                         </Button>
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="rounded-2xl border border-white/10 bg-black/50 overflow-hidden shadow-2xl">
-                    <div className="h-12 px-4 flex items-center justify-between border-b border-white/10 bg-black/40">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                    className="rounded-2xl border border-white/10 bg-black/50 overflow-hidden shadow-2xl"
+                >
+                    <div className="h-10 px-4 flex items-center justify-between border-b border-white/10 bg-black/40">
                         <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 rounded-full bg-red-500/20" />
-                            <div className="w-3 h-3 rounded-full bg-yellow-500/20" />
-                            <div className="w-3 h-3 rounded-full bg-green-500/20" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-red-500/20" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-green-500/20" />
                         </div>
                         <div className="text-xs text-neutral-400 font-mono">
                             {active.name} · {active.label}
                         </div>
-                        <div className="text-xs text-neutral-500 hidden sm:block">Tip: scroll inside the frame</div>
+                        <div className="text-xs text-neutral-500 hidden sm:block">Scroll inside</div>
                     </div>
 
-                    <div className="aspect-[16/10] md:aspect-[16/9] w-full bg-white">
+                    <div className="aspect-[16/9] w-full bg-white">
                         <iframe
                             title={`${active.name} clone preview`}
                             src={active.src}
                             className="h-full w-full"
                         />
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-neutral-400">
-                        <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+                >
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-neutral-500">
+                        <span className="inline-flex items-center rounded-full border border-white/5 bg-white/5 px-2.5 py-1">
                             Real render
                         </span>
-                        <span className="text-neutral-700">•</span>
-                        <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1">
-                            Scroll + click
-                        </span>
-                        <span className="text-neutral-700">•</span>
-                        <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                        <span className="inline-flex items-center rounded-full border border-white/5 bg-white/5 px-2.5 py-1">
                             Components + layout
                         </span>
-                        <span className="text-neutral-700">•</span>
-                        <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1">
-                            Tokens (colors / type / spacing)
+                        <span className="inline-flex items-center rounded-full border border-white/5 bg-white/5 px-2.5 py-1">
+                            Tokens
                         </span>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-4">
+                    <div className="flex items-center gap-4">
                         <Link
                             href="/welcome"
-                            className="text-sm font-semibold text-white underline underline-offset-4 hover:text-neutral-200"
+                            className="text-sm font-semibold text-white hover:text-neutral-200 transition-colors"
                         >
-                            Start with verified templates
+                            Start with templates →
                         </Link>
-                        <button
-                            className="text-sm font-semibold text-neutral-300 hover:text-white underline underline-offset-4"
-                            onClick={() =>
-                                document.querySelector("#demo")?.scrollIntoView({ behavior: "smooth", block: "start" })
-                            }
-                        >
-                            Try the demo
-                        </button>
                     </div>
-                </div>
-
-                <p className="mt-5 text-xs text-neutral-500 leading-relaxed max-w-3xl">
-                    Apple / Stripe are our upper‑bound references for clone quality. For best first results, start with the verified
-                    templates list — especially on complex pages.
-                </p>
+                </motion.div>
             </Container>
         </section>
     );

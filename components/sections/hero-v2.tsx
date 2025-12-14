@@ -10,47 +10,67 @@ import { GridPattern, Spotlight } from "@/components/ui/design-system";
 
 export function HeroV2() {
     return (
-        <section className="relative min-h-[90vh] flex items-center justify-center bg-black overflow-hidden pt-32 pb-20">
+        <section className="relative min-h-screen h-screen flex items-center justify-center bg-black overflow-hidden snap-start snap-always">
             {/* Design System: Ambient Effects */}
             <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
             <GridPattern
-                width={50}
-                height={50}
+                width={60}
+                height={60}
                 x={-1}
                 y={-1}
-                className="opacity-[0.15] [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"
+                className="opacity-[0.08] [mask-image:radial-gradient(ellipse_at_center,white_20%,transparent_70%)]"
             />
 
             <Container className="relative z-10 text-center">
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-4xl mx-auto space-y-10"
+                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    className="max-w-4xl mx-auto"
                 >
                     {/* Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium text-neutral-300 backdrop-blur-md">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium text-neutral-300 backdrop-blur-md mb-10"
+                    >
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
                         </span>
                         Clone V1 is live
-                    </div>
+                    </motion.div>
 
                     {/* Headline */}
-                    <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-white leading-[1.05]">
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[1.05] mb-8"
+                    >
                         Clone any page. <br />
                         <span className="text-neutral-500">Make it yours.</span>
-                    </h1>
+                    </motion.h1>
 
                     {/* Subhead */}
-                    <p className="text-xl md:text-2xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        className="text-lg md:text-xl text-neutral-400 max-w-xl mx-auto leading-relaxed mb-12"
+                    >
                         The first AI design engineer that starts with <span className="text-white font-medium">perfect code</span>.
                         Capture structure & tokens from any site, then refine with natural language.
-                    </p>
+                    </motion.p>
 
                     {/* CTA Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-5 justify-center items-center pt-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.7 }}
+                        className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+                    >
                         <Button
                             size="lg"
                             className="group relative h-14 px-8 text-lg rounded-full font-semibold bg-white text-black hover:bg-neutral-200 overflow-hidden transition-all hover:scale-105"
@@ -71,10 +91,15 @@ export function HeroV2() {
                             <Play className="w-5 h-5 mr-2 fill-current" />
                             See how it works
                         </Button>
-                    </div>
+                    </motion.div>
 
                     {/* Trust Indicators */}
-                    <div className="pt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 opacity-50 text-sm font-mono text-neutral-400">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.5 }}
+                        transition={{ duration: 1, delay: 0.9 }}
+                        className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-mono text-neutral-400"
+                    >
                         <div className="flex items-center gap-2">
                             <CheckIcon className="w-4 h-4 text-cyan-500" />
                             <span>React + Tailwind</span>
@@ -87,9 +112,25 @@ export function HeroV2() {
                             <CheckIcon className="w-4 h-4 text-cyan-500" />
                             <span>Zero Dependencies</span>
                         </div>
-                    </div>
+                    </motion.div>
                 </motion.div>
             </Container>
+
+            {/* Scroll Indicator */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 1.2 }}
+                className="absolute bottom-8 left-1/2 -translate-x-1/2"
+            >
+                <motion.div
+                    animate={{ y: [0, 8, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2"
+                >
+                    <motion.div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
+                </motion.div>
+            </motion.div>
         </section>
     );
 }
