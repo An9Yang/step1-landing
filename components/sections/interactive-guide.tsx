@@ -277,6 +277,11 @@ export function InteractiveGuide() {
 
     return (
         <section id="demo" className="min-h-screen flex flex-col justify-center bg-neutral-950 relative overflow-hidden snap-start py-16 md:py-20">
+            {/* Top Separator */}
+            <div className="absolute top-0 left-0 right-0 z-20">
+                <ReflectiveLine />
+            </div>
+
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
 
             <Container className="relative z-10">
@@ -361,8 +366,8 @@ export function InteractiveGuide() {
                                     if (e.key === "Enter" || e.key === " ") handleExtensionClick();
                                 }}
                             >
-                                <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-purple-500 flex items-center justify-center shadow-lg transform active:scale-95 transition-transform">
-                                    <div className="w-4 h-4 border-2 border-white rounded-full flex items-center justify-center">
+                                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#2D66EC] to-cyan-500 flex items-center justify-center shadow-[0_0_12px_rgba(45,102,236,0.4)] transform active:scale-95 transition-transform">
+                                    <div className="w-4 h-4 border-2 border-white/90 rounded-full flex items-center justify-center">
                                         <div className="w-1.5 h-1.5 bg-white rounded-full" />
                                     </div>
                                 </div>

@@ -6,7 +6,6 @@ import { Container } from "@/components/ui/container";
 import { Chrome, Play } from "lucide-react";
 import { CHROME_WEBSTORE_URL } from "@/lib/links";
 import { GridPattern, Spotlight } from "@/components/ui/design-system";
-import { ReflectiveLine } from "@/components/ui/reflective-line";
 
 export function HeroV2() {
     return (
@@ -115,13 +114,6 @@ export function HeroV2() {
                     </motion.div>
                 </motion.div>
             </Container>
-
-            {/* Scroll Indicator - removed bouncing pill, keeping it clean */}
-
-            {/* Bottom Separator - Subtle Metal Line */}
-            <div className="absolute bottom-0 left-0 right-0 z-20">
-                <ReflectiveLine />
-            </div>
         </section>
     );
 }
