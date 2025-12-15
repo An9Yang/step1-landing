@@ -7,7 +7,7 @@ import { Features } from "@/components/sections/features";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-foreground selection:bg-primary/30 scroll-smooth snap-y snap-mandatory overflow-y-auto h-screen">
+    <main className="min-h-screen bg-neutral-50 text-foreground selection:bg-primary/30 scroll-smooth snap-y snap-mandatory overflow-y-auto h-screen">
       <Header />
       <HeroV2 />
       <InteractiveGuide />

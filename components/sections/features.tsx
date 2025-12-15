@@ -8,7 +8,7 @@ import { ReflectiveLine } from "@/components/ui/reflective-line";
 
 export function Features() {
     return (
-        <section id="features" className="min-h-screen flex flex-col justify-center bg-black relative overflow-hidden snap-start py-16 md:py-20">
+        <section id="features" className="min-h-screen flex flex-col justify-center bg-neutral-50 relative overflow-hidden snap-start py-16 md:py-20">
             {/* Top Separator */}
             <div className="absolute top-0 left-0 right-0 z-20">
                 <ReflectiveLine />
@@ -22,7 +22,7 @@ export function Features() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-12 md:mb-16 space-y-4"
                 >
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight">
                         Capabilities you can feel.
                     </h2>
                     <p className="text-neutral-500 text-base md:text-lg max-w-xl mx-auto">
@@ -38,27 +38,27 @@ export function Features() {
                     className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto"
                 >
                     {/* Card 1: AI Editing (Span 2) */}
-                    <div className="md:col-span-2 group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 hover:bg-neutral-900/80 transition-colors">
-                        <GridPattern className="opacity-[0.06]" />
+                    <div className="md:col-span-2 group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white hover:bg-neutral-50 transition-colors shadow-sm">
+                        <GridPattern className="opacity-[0.03]" />
 
                         <div className="relative z-10 p-6 md:p-8 h-full flex flex-col">
                             <div className="flex items-center gap-3 mb-3">
-                                <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-                                    <Sparkles className="w-4 h-4 text-cyan-400" />
+                                <div className="p-2 rounded-lg bg-neutral-100 border border-neutral-200">
+                                    <Sparkles className="w-4 h-4 text-neutral-600" />
                                 </div>
-                                <h3 className="text-lg font-semibold text-white">Semantic AI Editing</h3>
+                                <h3 className="text-lg font-semibold text-neutral-900">Semantic AI Editing</h3>
                             </div>
 
-                            <p className="text-neutral-400 text-sm max-w-md mb-6">
+                            <p className="text-neutral-500 text-sm max-w-md mb-6">
                                 "Make it dark mode." "Increase contrast." Step1 understands design intent, not just string replacement.
                             </p>
 
                             {/* Visual Simulation */}
-                            <div className="mt-auto relative rounded-lg border border-white/10 bg-black p-3 font-mono text-xs leading-relaxed overflow-hidden shadow-xl">
-                                <div className="flex gap-1.5 mb-2 border-b border-white/5 pb-2">
-                                    <div className="w-2 h-2 rounded-full bg-red-500/20" />
-                                    <div className="w-2 h-2 rounded-full bg-yellow-500/20" />
-                                    <div className="w-2 h-2 rounded-full bg-green-500/20" />
+                            <div className="mt-auto relative rounded-lg border border-neutral-200 bg-neutral-900 p-3 font-mono text-xs leading-relaxed overflow-hidden shadow-lg">
+                                <div className="flex gap-1.5 mb-2 border-b border-neutral-700 pb-2">
+                                    <div className="w-2 h-2 rounded-full bg-red-400/60" />
+                                    <div className="w-2 h-2 rounded-full bg-yellow-400/60" />
+                                    <div className="w-2 h-2 rounded-full bg-green-400/60" />
                                 </div>
                                 <div className="space-y-1">
                                     <div className="text-neutral-500">// User Prompt</div>
@@ -77,23 +77,23 @@ export function Features() {
                     </div>
 
                     {/* Card 2: Design Tokens (Span 1) */}
-                    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 hover:bg-neutral-900/80 transition-colors">
+                    <div className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white hover:bg-neutral-50 transition-colors shadow-sm">
                         <div className="relative z-10 p-6 h-full flex flex-col">
                             <div className="flex items-center gap-3 mb-3">
-                                <div className="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20">
-                                    <Layers className="w-4 h-4 text-purple-400" />
+                                <div className="p-2 rounded-lg bg-neutral-100 border border-neutral-200">
+                                    <Layers className="w-4 h-4 text-neutral-600" />
                                 </div>
-                                <h3 className="text-lg font-semibold text-white">Tokens</h3>
+                                <h3 className="text-lg font-semibold text-neutral-900">Tokens</h3>
                             </div>
 
-                            <p className="text-neutral-400 text-sm mb-4">
+                            <p className="text-neutral-500 text-sm mb-4">
                                 Colors, fonts, spacing extracted as variables.
                             </p>
 
-                            {/* Token Visuals */}
+                            {/* Token Visuals - Keep colorful */}
                             <div className="mt-auto grid grid-cols-2 gap-1.5">
-                                <div className="h-10 rounded-lg bg-neutral-800 border border-white/5" />
-                                <div className="h-10 rounded-lg bg-neutral-100" />
+                                <div className="h-10 rounded-lg bg-neutral-800 border border-neutral-300" />
+                                <div className="h-10 rounded-lg bg-neutral-100 border border-neutral-200" />
                                 <div className="h-10 rounded-lg bg-cyan-500" />
                                 <div className="h-10 rounded-lg bg-purple-500" />
                             </div>
@@ -101,37 +101,37 @@ export function Features() {
                     </div>
 
                     {/* Card 3: Exact Export (Span 1) */}
-                    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 hover:bg-neutral-900/80 transition-colors">
+                    <div className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white hover:bg-neutral-50 transition-colors shadow-sm">
                         <div className="relative z-10 p-6 h-full flex flex-col">
                             <div className="flex items-center gap-3 mb-3">
-                                <div className="p-2 rounded-lg bg-green-500/10 border border-green-500/20">
-                                    <Code2 className="w-4 h-4 text-green-400" />
+                                <div className="p-2 rounded-lg bg-neutral-100 border border-neutral-200">
+                                    <Code2 className="w-4 h-4 text-neutral-600" />
                                 </div>
-                                <h3 className="text-lg font-semibold text-white">Clean Code</h3>
+                                <h3 className="text-lg font-semibold text-neutral-900">Clean Code</h3>
                             </div>
 
-                            <p className="text-neutral-400 text-sm mb-4">
+                            <p className="text-neutral-500 text-sm mb-4">
                                 Production-ready React + Tailwind.
                             </p>
 
-                            <div className="mt-auto p-2.5 rounded-lg bg-black border border-white/10 text-[10px] font-mono text-neutral-400">
+                            <div className="mt-auto p-2.5 rounded-lg bg-neutral-900 border border-neutral-200 text-[10px] font-mono text-neutral-400 shadow-lg">
                                 <div>export default function</div>
-                                <div className="pl-2 text-green-400">&lt;Hero /&gt;</div>
-                                <div className="pl-2 text-green-400">&lt;Features /&gt;</div>
-                                <div className="pl-2 text-green-400">&lt;Footer /&gt;</div>
+                                <div className="pl-2 text-emerald-400">&lt;Hero /&gt;</div>
+                                <div className="pl-2 text-emerald-400">&lt;Features /&gt;</div>
+                                <div className="pl-2 text-emerald-400">&lt;Footer /&gt;</div>
                             </div>
                         </div>
                     </div>
 
                     {/* Card 4: CTA (Span 2) */}
-                    <div className="md:col-span-2 group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-neutral-900 to-black hover:border-white/20 transition-all cursor-pointer">
+                    <div className="md:col-span-2 group relative overflow-hidden rounded-2xl border border-neutral-200 bg-gradient-to-br from-neutral-900 to-neutral-800 hover:border-neutral-300 transition-all cursor-pointer shadow-lg">
                         <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="relative z-10 p-6 flex items-center justify-between">
                             <div>
                                 <h3 className="text-lg font-bold text-white">Ready to build?</h3>
                                 <p className="text-neutral-400 text-sm">Start with 3 free clones per month.</p>
                             </div>
-                            <div className="h-10 w-10 rounded-full bg-white text-black flex items-center justify-center transform group-hover:translate-x-1 transition-transform">
+                            <div className="h-10 w-10 rounded-full bg-white text-neutral-900 flex items-center justify-center transform group-hover:translate-x-1 transition-transform">
                                 <ArrowRight className="w-4 h-4" />
                             </div>
                         </div>

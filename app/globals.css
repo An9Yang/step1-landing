@@ -86,11 +86,11 @@
 
 /* Custom Gradients and Utilities */
 .glass-panel {
-  @apply bg-black/40 backdrop-blur-md border border-white/10 shadow-xl;
+  @apply bg-white/80 backdrop-blur-md border border-neutral-200 shadow-lg;
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-neutral-200 to-neutral-400;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 via-neutral-700 to-neutral-500;
 }
 
 .glow-effect {
@@ -99,11 +99,11 @@
 
 .glow-effect::before {
   content: "";
-  @apply absolute -inset-1 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 opacity-20 blur-lg transition duration-500;
+  @apply absolute -inset-1 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 opacity-10 blur-lg transition duration-500;
 }
 
 .glow-effect:hover::before {
-  @apply opacity-50;
+  @apply opacity-20;
 }
 
 /* Scroll snap enhancements */
@@ -111,7 +111,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar for dark theme */
+/* Custom scrollbar for light theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -121,12 +121,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 /* Shine animation for buttons */

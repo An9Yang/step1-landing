@@ -136,20 +136,20 @@ function DemoScanning() {
     );
 
     return (
-        <div className="absolute inset-0 bg-neutral-950/90 backdrop-blur-sm z-20 flex flex-col items-center justify-center p-8 text-center">
+        <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-20 flex flex-col items-center justify-center p-8 text-center">
             <div className="relative">
-                <div className="absolute inset-0 bg-primary blur-2xl opacity-20 animate-pulse" />
-                <Loader2 className="w-14 h-14 text-primary animate-spin relative z-10" />
+                <div className="absolute inset-0 bg-neutral-400 blur-2xl opacity-20 animate-pulse" />
+                <Loader2 className="w-14 h-14 text-neutral-700 animate-spin relative z-10" />
             </div>
-            <h3 className="mt-6 text-2xl font-bold text-white">Cloning…</h3>
-            <p className="mt-2 text-sm text-neutral-400 max-w-md">
+            <h3 className="mt-6 text-2xl font-bold text-neutral-900">Cloning…</h3>
+            <p className="mt-2 text-sm text-neutral-500 max-w-md">
                 Extracting layout, assets, and design tokens so the result stays editable.
             </p>
-            <div className="mt-5 w-full max-w-sm text-xs text-neutral-400 font-mono space-y-2">
+            <div className="mt-5 w-full max-w-sm text-xs text-neutral-500 font-mono space-y-2">
                 {rows.map((r) => (
                     <div key={r.k} className="flex justify-between">
                         <span>{r.k}</span>
-                        <span className="text-green-400">{r.v}</span>
+                        <span className="text-emerald-600">{r.v}</span>
                     </div>
                 ))}
             </div>
@@ -159,20 +159,20 @@ function DemoScanning() {
 
 function DemoReady({ onReplay }: { onReplay: () => void }) {
     return (
-        <div className="h-full w-full bg-neutral-950 text-white flex items-center justify-center p-8">
+        <div className="h-full w-full bg-neutral-50 text-neutral-900 flex items-center justify-center p-8">
             <div className="max-w-md text-center">
-                <div className="w-14 h-14 rounded-full bg-green-500/15 border border-green-500/30 flex items-center justify-center mx-auto">
-                    <Check className="w-7 h-7 text-green-400" />
+                <div className="w-14 h-14 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center mx-auto">
+                    <Check className="w-7 h-7 text-emerald-600" />
                 </div>
                 <h3 className="mt-6 text-2xl font-bold">Your cloned site is ready.</h3>
-                <p className="mt-2 text-neutral-300 leading-relaxed">
-                    This is where we’d ask you to <span className="text-white font-semibold">sign in</span> to save and keep editing.
+                <p className="mt-2 text-neutral-500 leading-relaxed">
+                    This is where we'd ask you to <span className="text-neutral-900 font-semibold">sign in</span> to save and keep editing.
                     The demo stays clickable without an account.
                 </p>
 
                 <div className="mt-6 flex flex-col gap-3">
                     <Button
-                        className="h-11 rounded-full font-semibold"
+                        className="h-11 rounded-full font-semibold bg-neutral-900 text-white hover:bg-neutral-800"
                         onClick={() => window.open(CHROME_WEBSTORE_URL, "_blank", "noopener,noreferrer")}
                     >
                         <Chrome className="w-4 h-4 mr-2" />
@@ -181,19 +181,19 @@ function DemoReady({ onReplay }: { onReplay: () => void }) {
 
                     <Link
                         href={STEP1_TEMPLATES_URL}
-                        className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-neutral-300 hover:text-white"
+                        className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-neutral-600 hover:text-neutral-900"
                     >
                         Start with verified templates <ExternalLink className="w-4 h-4 opacity-70" />
                     </Link>
 
                     <Link
                         href="/login"
-                        className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-neutral-400 hover:text-white"
+                        className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-neutral-500 hover:text-neutral-900"
                     >
                         Preview the sign‑in gate <ExternalLink className="w-4 h-4 opacity-70" />
                     </Link>
 
-                    <Button variant="ghost" className="text-neutral-300 hover:text-white" onClick={onReplay}>
+                    <Button variant="ghost" className="text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200" onClick={onReplay}>
                         Replay demo
                     </Button>
                 </div>
@@ -276,13 +276,13 @@ export function InteractiveGuide() {
     };
 
     return (
-        <section id="demo" className="min-h-screen flex flex-col justify-center bg-neutral-950 relative overflow-hidden snap-start py-16 md:py-20">
+        <section id="demo" className="min-h-screen flex flex-col justify-center bg-neutral-100 relative overflow-hidden snap-start py-16 md:py-20">
             {/* Top Separator */}
             <div className="absolute top-0 left-0 right-0 z-20">
                 <ReflectiveLine />
             </div>
 
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-neutral-300/30 rounded-full blur-[150px] pointer-events-none" />
 
             <Container className="relative z-10">
                 <div className="text-center mb-10 md:mb-12">
@@ -291,9 +291,9 @@ export function InteractiveGuide() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-primary mb-5"
+                        className="inline-flex items-center rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-600 mb-5 shadow-sm"
                     >
-                        <Sparkles className="w-3 h-3 mr-2" />
+                        <Sparkles className="w-3 h-3 mr-2 text-neutral-500" />
                         Interactive Demo
                     </motion.div>
                     <motion.h2
@@ -301,7 +301,7 @@ export function InteractiveGuide() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="text-3xl md:text-5xl font-bold mb-4"
+                        className="text-3xl md:text-5xl font-bold mb-4 text-neutral-900"
                     >
                         Click once. See the flow.
                     </motion.h2>
@@ -310,7 +310,7 @@ export function InteractiveGuide() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto"
+                        className="text-neutral-500 text-base md:text-lg max-w-xl mx-auto"
                     >
                         No login required. Click the Step1 icon, watch the clone, then apply AI-style edits.
                     </motion.p>
@@ -330,14 +330,14 @@ export function InteractiveGuide() {
                     {/* Demo Window */}
                     <motion.div
                         layout
-                        className="aspect-[16/10] bg-neutral-900 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden"
+                        className="aspect-[16/10] bg-white rounded-2xl border border-neutral-200 shadow-xl relative overflow-hidden"
                     >
                         {/* Browser Bar */}
-                        <div className="h-10 border-b border-white/10 bg-neutral-900/90 backdrop-blur-md flex items-center px-4 justify-between z-30 relative">
+                        <div className="h-10 border-b border-neutral-200 bg-neutral-50 backdrop-blur-md flex items-center px-4 justify-between z-30 relative">
                             <div className="flex gap-2">
-                                <div className="w-3 h-3 rounded-full bg-red-500/20" />
-                                <div className="w-3 h-3 rounded-full bg-yellow-500/20" />
-                                <div className="w-3 h-3 rounded-full bg-green-500/20" />
+                                <div className="w-3 h-3 rounded-full bg-red-400/60" />
+                                <div className="w-3 h-3 rounded-full bg-yellow-400/60" />
+                                <div className="w-3 h-3 rounded-full bg-green-400/60" />
                             </div>
 
                             <div className="flex-1 flex justify-center">
@@ -345,7 +345,7 @@ export function InteractiveGuide() {
                                     key={currentStep}
                                     initial={{ opacity: 0, y: 5 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="bg-black/50 px-4 py-1 rounded text-xs text-neutral-500 font-mono flex items-center gap-2"
+                                    className="bg-neutral-100 px-4 py-1 rounded text-xs text-neutral-500 font-mono flex items-center gap-2 border border-neutral-200"
                                 >
                                     {currentStep === "ready" && <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />}
                                     {url}
@@ -374,9 +374,9 @@ export function InteractiveGuide() {
                                 </div>
 
                                 {currentStep === "browse" && (
-                                    <div className="absolute top-10 right-0 w-max px-3 py-1.5 bg-black text-white text-xs rounded-md shadow-xl z-50 border border-white/10">
+                                    <div className="absolute top-10 right-0 w-max px-3 py-1.5 bg-neutral-900 text-white text-xs rounded-md shadow-xl z-50 border border-neutral-700">
                                         Click Step1 to clone
-                                        <div className="absolute -top-1 right-3 w-2 h-2 bg-black rotate-45 border-l border-t border-white/10" />
+                                        <div className="absolute -top-1 right-3 w-2 h-2 bg-neutral-900 rotate-45 border-l border-t border-neutral-700" />
                                     </div>
                                 )}
                             </div>
@@ -483,12 +483,12 @@ export function InteractiveGuide() {
                     {/* Narrative Rail - Redesigned */}
                     <div className="flex flex-col gap-8 pt-4">
                         <div>
-                            <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 mb-6 pl-12">
+                            <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-400 mb-6 pl-12">
                                 The Workflow
                             </div>
                             <div className="relative space-y-0">
                                 {/* Continuous vertical line background */}
-                                <div className="absolute left-[39px] top-4 bottom-10 w-px bg-white/10" />
+                                <div className="absolute left-[39px] top-4 bottom-10 w-px bg-neutral-300" />
 
                                 {railSteps.map((s, idx) => {
                                     const isActive = s.id === currentStep;
@@ -510,7 +510,7 @@ export function InteractiveGuide() {
                                             {/* Number */}
                                             <span className={cn(
                                                 "w-8 text-right font-mono text-[10px] leading-6 transition-colors duration-300 pt-0.5",
-                                                isActive ? "text-primary" : "text-neutral-600 group-hover:text-neutral-400"
+                                                isActive ? "text-neutral-900" : "text-neutral-400 group-hover:text-neutral-600"
                                             )}>
                                                 {String(idx + 1).padStart(2, "0")}
                                             </span>
@@ -520,10 +520,10 @@ export function InteractiveGuide() {
                                                 <div className={cn(
                                                     "z-10 flex h-3 w-3 items-center justify-center rounded-full border transition-all duration-500 mt-2",
                                                     isActive
-                                                        ? "border-primary bg-primary shadow-[0_0_10px_rgba(59,130,246,0.5)] scale-110"
+                                                        ? "border-neutral-900 bg-neutral-900 shadow-md scale-110"
                                                         : isPast
-                                                            ? "border-primary/50 bg-primary/20"
-                                                            : "border-white/10 bg-neutral-900 group-hover:border-white/30"
+                                                            ? "border-neutral-500 bg-neutral-400"
+                                                            : "border-neutral-300 bg-white group-hover:border-neutral-400"
                                                 )}>
                                                     <div className={cn(
                                                         "h-1 w-1 rounded-full transition-colors",
@@ -536,13 +536,13 @@ export function InteractiveGuide() {
                                             <div className="flex-1 pt-0.5">
                                                 <h3 className={cn(
                                                     "text-sm font-semibold tracking-tight transition-colors duration-300",
-                                                    isActive ? "text-white" : "text-neutral-400 group-hover:text-neutral-200"
+                                                    isActive ? "text-neutral-900" : "text-neutral-500 group-hover:text-neutral-700"
                                                 )}>
                                                     {s.label}
                                                 </h3>
                                                 <p className={cn(
                                                     "mt-1 text-xs leading-relaxed transition-colors duration-300",
-                                                    isActive ? "text-neutral-300" : "text-neutral-600 group-hover:text-neutral-500"
+                                                    isActive ? "text-neutral-600" : "text-neutral-400 group-hover:text-neutral-500"
                                                 )}>
                                                     {s.desc}
                                                 </p>
@@ -556,13 +556,13 @@ export function InteractiveGuide() {
                         <div className="space-y-3">
                             {currentStep === "browse" && (
                                 <>
-                                    <div className="text-white font-semibold text-lg">Start simple.</div>
-                                    <p className="text-sm text-neutral-400 leading-relaxed">
+                                    <div className="text-neutral-900 font-semibold text-lg">Start simple.</div>
+                                    <p className="text-sm text-neutral-500 leading-relaxed">
                                         For the cleanest first run, begin with verified templates — then click the Step1 icon in Chrome.
                                     </p>
                                     <Link
                                         href={STEP1_TEMPLATES_URL}
-                                        className="inline-flex items-center gap-2 text-sm font-semibold text-white underline underline-offset-4 hover:text-neutral-200"
+                                        className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 underline underline-offset-4 hover:text-neutral-600"
                                     >
                                         Open templates <ExternalLink className="w-4 h-4 opacity-70" />
                                     </Link>
@@ -571,8 +571,8 @@ export function InteractiveGuide() {
 
                             {currentStep === "clone" && (
                                 <>
-                                    <div className="text-white font-semibold text-lg">Cloning…</div>
-                                    <p className="text-sm text-neutral-400 leading-relaxed">
+                                    <div className="text-neutral-900 font-semibold text-lg">Cloning…</div>
+                                    <p className="text-sm text-neutral-500 leading-relaxed">
                                         We capture structure + design tokens so the output remains editable and consistent.
                                     </p>
                                 </>
@@ -580,11 +580,11 @@ export function InteractiveGuide() {
 
                             {currentStep === "edit" && (
                                 <>
-                                    <div className="text-white font-semibold text-lg">Edit with intent.</div>
-                                    <p className="text-sm text-neutral-400 leading-relaxed">
+                                    <div className="text-neutral-900 font-semibold text-lg">Edit with intent.</div>
+                                    <p className="text-sm text-neutral-500 leading-relaxed">
                                         Try a couple commands in the editor bar. Notice how changes stay consistent.
                                     </p>
-                                    <p className="text-xs text-neutral-500 leading-relaxed">
+                                    <p className="text-xs text-neutral-400 leading-relaxed">
                                         The real product signs you in only when you save — not upfront.
                                     </p>
                                 </>
@@ -592,13 +592,12 @@ export function InteractiveGuide() {
 
                             {currentStep === "ready" && (
                                 <>
-                                    <div className="text-white font-semibold text-lg">Try it for real.</div>
-                                    <p className="text-sm text-neutral-400 leading-relaxed">
+                                    <div className="text-neutral-900 font-semibold text-lg">Try it for real.</div>
+                                    <p className="text-sm text-neutral-500 leading-relaxed">
                                         Install the extension to clone a real page. Use templates to hit the aha moment faster.
                                     </p>
                                     <Button
-                                        variant="glow"
-                                        className="w-full rounded-full h-11 font-semibold"
+                                        className="w-full rounded-full h-11 font-semibold bg-neutral-900 text-white hover:bg-neutral-800"
                                         onClick={() => window.open(CHROME_WEBSTORE_URL, "_blank", "noopener,noreferrer")}
                                     >
                                         <Chrome className="w-4 h-4 mr-2" />

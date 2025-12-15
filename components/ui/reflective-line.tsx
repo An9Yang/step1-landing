@@ -22,11 +22,11 @@ export function ReflectiveLine({ className }: ReflectiveLineProps) {
             onMouseMove={onMouseMove}
         >
             {/* Base Line: Very faint, fades out at ends to avoid stiffness */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neutral-800 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neutral-300 to-transparent" />
 
-            {/* Moving Glint: White, sharp, simulates metal reflection */}
+            {/* Moving Glint: Sharp, simulates metal reflection */}
             <motion.div
-                className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-neutral-500/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 style={{
                     left: useMotionTemplate`${mouseX}px`,
                     x: "-50%", // Center the glint on cursor
@@ -42,7 +42,7 @@ export function ReflectiveLine({ className }: ReflectiveLineProps) {
                 className="absolute inset-0 z-10 opacity-0 hover:opacity-100 transition-opacity duration-500"
             >
                 <motion.div
-                    className="absolute inset-y-0 w-40 bg-gradient-to-r from-transparent via-white/50 to-transparent blur-[1px]"
+                    className="absolute inset-y-0 w-40 bg-gradient-to-r from-transparent via-neutral-600/70 to-transparent blur-[1px]"
                     style={{
                         left: useMotionTemplate`${mouseX}px`,
                         x: "-50%",
