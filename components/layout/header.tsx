@@ -11,7 +11,11 @@ export function Header() {
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-black/20 backdrop-blur-md transition-all">
             <Container>
                 <div className="flex h-16 items-center justify-between">
-                    <Link href="/" className="flex items-center space-x-2">
+                    <Link href="/" className="flex items-center gap-2">
+                        <svg width="22" height="22" viewBox="0 0 182 182" fill="none">
+                            <path d="M55.7429 76.0664L105.052 55.7429L125.376 105.052" stroke="white" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M76.0664 125.376L105.052 55.7429" stroke="white" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
                         <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
                             Step1
                         </span>

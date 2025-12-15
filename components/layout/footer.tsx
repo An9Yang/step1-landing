@@ -14,8 +14,12 @@ export function Footer() {
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                     <div className="md:col-span-2 space-y-3">
-                        <Link href="/" className="font-bold text-xl tracking-tight text-white">
-                            Step1
+                        <Link href="/" className="inline-flex items-center gap-2">
+                            <svg width="22" height="22" viewBox="0 0 182 182" fill="none">
+                                <path d="M55.7429 76.0664L105.052 55.7429L125.376 105.052" stroke="white" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M76.0664 125.376L105.052 55.7429" stroke="white" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                            <span className="font-bold text-xl tracking-tight text-white">Step1</span>
                         </Link>
                         <p className="text-neutral-400 leading-relaxed max-w-sm text-sm">
                             Clone a landing page you like, then make it yours with AI edits.

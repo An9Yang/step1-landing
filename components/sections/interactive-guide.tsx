@@ -366,10 +366,11 @@ export function InteractiveGuide() {
                                     if (e.key === "Enter" || e.key === " ") handleExtensionClick();
                                 }}
                             >
-                                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#2D66EC] to-cyan-500 flex items-center justify-center shadow-[0_0_12px_rgba(45,102,236,0.4)] transform active:scale-95 transition-transform">
-                                    <div className="w-4 h-4 border-2 border-white/90 rounded-full flex items-center justify-center">
-                                        <div className="w-1.5 h-1.5 bg-white rounded-full" />
-                                    </div>
+                                <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center ring-2 ring-[#2D66EC] shadow-[0_0_12px_rgba(45,102,236,0.5)] transform active:scale-95 transition-transform">
+                                    <svg width="16" height="16" viewBox="0 0 182 182" fill="none" className="translate-x-[0.5px] -translate-y-[0.5px]">
+                                        <path d="M55.7429 76.0664L105.052 55.7429L125.376 105.052" stroke="#1a1a1a" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M76.0664 125.376L105.052 55.7429" stroke="#1a1a1a" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
                                 </div>
 
                                 {currentStep === "browse" && (
