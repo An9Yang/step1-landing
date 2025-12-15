@@ -35,8 +35,8 @@ export function HeroV2() {
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-neutral-400 backdrop-blur-md mb-8 hover:bg-white/10 transition-colors cursor-default"
                     >
                         <span className="relative flex h-1.5 w-1.5">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-500"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
                         </span>
                         Clone V1 is live
                     </motion.div>
@@ -100,15 +100,15 @@ export function HeroV2() {
                         className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs font-mono text-neutral-500 uppercase tracking-wide"
                     >
                         <div className="flex items-center gap-2">
-                            <CheckIcon className="w-3 h-3 text-cyan-500/80" />
+                            <CheckIcon className="w-3 h-3 text-neutral-400" />
                             <span>React + Tailwind</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <CheckIcon className="w-3 h-3 text-cyan-500/80" />
+                            <CheckIcon className="w-3 h-3 text-neutral-400" />
                             <span>Design Tokens</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <CheckIcon className="w-3 h-3 text-cyan-500/80" />
+                            <CheckIcon className="w-3 h-3 text-neutral-400" />
                             <span>Zero Dependencies</span>
                         </div>
                     </motion.div>

@@ -43,8 +43,8 @@ export function Features() {
 
                         <div className="relative z-10 p-6 md:p-8 h-full flex flex-col">
                             <div className="flex items-center gap-3 mb-3">
-                                <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-                                    <Sparkles className="w-4 h-4 text-cyan-400" />
+                                <div className="p-2 rounded-lg bg-white/5 border border-white/10">
+                                    <Sparkles className="w-4 h-4 text-neutral-400" />
                                 </div>
                                 <h3 className="text-lg font-semibold text-white">Semantic AI Editing</h3>
                             </div>
@@ -80,8 +80,8 @@ export function Features() {
                     <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 hover:bg-neutral-900/80 transition-colors">
                         <div className="relative z-10 p-6 h-full flex flex-col">
                             <div className="flex items-center gap-3 mb-3">
-                                <div className="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20">
-                                    <Layers className="w-4 h-4 text-purple-400" />
+                                <div className="p-2 rounded-lg bg-white/5 border border-white/10">
+                                    <Layers className="w-4 h-4 text-neutral-400" />
                                 </div>
                                 <h3 className="text-lg font-semibold text-white">Tokens</h3>
                             </div>
@@ -104,8 +104,8 @@ export function Features() {
                     <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 hover:bg-neutral-900/80 transition-colors">
                         <div className="relative z-10 p-6 h-full flex flex-col">
                             <div className="flex items-center gap-3 mb-3">
-                                <div className="p-2 rounded-lg bg-green-500/10 border border-green-500/20">
-                                    <Code2 className="w-4 h-4 text-green-400" />
+                                <div className="p-2 rounded-lg bg-white/5 border border-white/10">
+                                    <Code2 className="w-4 h-4 text-neutral-400" />
                                 </div>
                                 <h3 className="text-lg font-semibold text-white">Clean Code</h3>
                             </div>

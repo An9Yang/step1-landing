@@ -29,7 +29,7 @@ export function Footer() {
                             href={CHROME_WEBSTORE_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold shadow-[0_0_20px_rgba(45,102,236,0.35)] hover:bg-primary/90 transition-colors"
+                            className="inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-sm font-semibold hover:bg-neutral-200 transition-colors"
                         >
                             <Chrome className="w-4 h-4" />
                             Add to Chrome

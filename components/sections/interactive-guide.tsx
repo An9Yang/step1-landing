@@ -89,7 +89,7 @@ function DemoLanding({
         <div className={rootClassName}>
             {isEditor && (
                 <div className="absolute inset-0 pointer-events-none z-10 p-4">
-                    <div className="h-full w-full rounded-xl border-2 border-dashed border-primary/30 flex items-start justify-center pt-2">
+                    <div className="h-full w-full rounded-xl border-2 border-dashed border-white/20 flex items-start justify-center pt-2">
                         <span className="bg-black/60 text-white px-2 py-0.5 text-[10px] rounded uppercase font-bold tracking-wider backdrop-blur-md border border-white/10">
                             Editor preview
                         </span>
@@ -138,8 +138,8 @@ function DemoScanning() {
     return (
         <div className="absolute inset-0 bg-neutral-950/90 backdrop-blur-sm z-20 flex flex-col items-center justify-center p-8 text-center">
             <div className="relative">
-                <div className="absolute inset-0 bg-primary blur-2xl opacity-20 animate-pulse" />
-                <Loader2 className="w-14 h-14 text-primary animate-spin relative z-10" />
+                <div className="absolute inset-0 bg-white blur-2xl opacity-10 animate-pulse" />
+                <Loader2 className="w-14 h-14 text-white animate-spin relative z-10" />
             </div>
             <h3 className="mt-6 text-2xl font-bold text-white">Cloning…</h3>
             <p className="mt-2 text-sm text-neutral-400 max-w-md">
@@ -282,7 +282,7 @@ export function InteractiveGuide() {
                 <ReflectiveLine />
             </div>
 
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-white/5 rounded-full blur-[150px] pointer-events-none" />
 
             <Container className="relative z-10">
                 <div className="text-center mb-10 md:mb-12">
@@ -291,7 +291,7 @@ export function InteractiveGuide() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-primary mb-5"
+                        className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-neutral-300 mb-5"
                     >
                         <Sparkles className="w-3 h-3 mr-2" />
                         Interactive Demo
@@ -347,7 +347,7 @@ export function InteractiveGuide() {
                                     animate={{ opacity: 1, y: 0 }}
                                     className="bg-black/50 px-4 py-1 rounded text-xs text-neutral-500 font-mono flex items-center gap-2"
                                 >
-                                    {currentStep === "ready" && <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />}
+                                    {currentStep === "ready" && <div className="w-2 h-2 rounded-full bg-white animate-pulse" />}
                                     {url}
                                 </motion.div>
                             </div>
@@ -366,7 +366,7 @@ export function InteractiveGuide() {
                                     if (e.key === "Enter" || e.key === " ") handleExtensionClick();
                                 }}
                             >
-                                <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center ring-2 ring-[#2D66EC] shadow-[0_0_12px_rgba(45,102,236,0.5)] transform active:scale-95 transition-transform">
+                                <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center ring-2 ring-white/50 shadow-[0_0_16px_rgba(255,255,255,0.3)] transform active:scale-95 transition-transform">
                                     <svg width="16" height="16" viewBox="0 0 182 182" fill="none" className="translate-x-[0.5px] -translate-y-[0.5px]">
                                         <path d="M55.7429 76.0664L105.052 55.7429L125.376 105.052" stroke="#1a1a1a" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round"/>
                                         <path d="M76.0664 125.376L105.052 55.7429" stroke="#1a1a1a" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round"/>
@@ -441,7 +441,7 @@ export function InteractiveGuide() {
                                                         onClick={cycleTheme}
                                                         className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-white hover:bg-white/10"
                                                     >
-                                                        <Palette className="w-4 h-4 text-primary" />
+                                                        <Palette className="w-4 h-4 text-neutral-400" />
                                                         “Make it dark”
                                                     </button>
                                                     <button
@@ -449,7 +449,7 @@ export function InteractiveGuide() {
                                                         onClick={toggleHeadline}
                                                         className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-white hover:bg-white/10"
                                                     >
-                                                        <Type className="w-4 h-4 text-primary" />
+                                                        <Type className="w-4 h-4 text-neutral-400" />
                                                         “Rewrite the hero”
                                                     </button>
                                                 </div>
@@ -510,7 +510,7 @@ export function InteractiveGuide() {
                                             {/* Number */}
                                             <span className={cn(
                                                 "w-8 text-right font-mono text-[10px] leading-6 transition-colors duration-300 pt-0.5",
-                                                isActive ? "text-primary" : "text-neutral-600 group-hover:text-neutral-400"
+                                                isActive ? "text-white" : "text-neutral-600 group-hover:text-neutral-400"
                                             )}>
                                                 {String(idx + 1).padStart(2, "0")}
                                             </span>
@@ -520,14 +520,14 @@ export function InteractiveGuide() {
                                                 <div className={cn(
                                                     "z-10 flex h-3 w-3 items-center justify-center rounded-full border transition-all duration-500 mt-2",
                                                     isActive
-                                                        ? "border-primary bg-primary shadow-[0_0_10px_rgba(59,130,246,0.5)] scale-110"
+                                                        ? "border-white bg-white shadow-[0_0_10px_rgba(255,255,255,0.4)] scale-110"
                                                         : isPast
-                                                            ? "border-primary/50 bg-primary/20"
+                                                            ? "border-white/50 bg-white/20"
                                                             : "border-white/10 bg-neutral-900 group-hover:border-white/30"
                                                 )}>
                                                     <div className={cn(
                                                         "h-1 w-1 rounded-full transition-colors",
-                                                        isActive ? "bg-white" : "bg-transparent"
+                                                        isActive ? "bg-neutral-900" : "bg-transparent"
                                                     )} />
                                                 </div>
                                             </div>
@@ -597,8 +597,7 @@ export function InteractiveGuide() {
                                         Install the extension to clone a real page. Use templates to hit the aha moment faster.
                                     </p>
                                     <Button
-                                        variant="glow"
-                                        className="w-full rounded-full h-11 font-semibold"
+                                        className="w-full rounded-full h-11 font-semibold bg-white text-black hover:bg-neutral-200"
                                         onClick={() => window.open(CHROME_WEBSTORE_URL, "_blank", "noopener,noreferrer")}
                                     >
                                         <Chrome className="w-4 h-4 mr-2" />

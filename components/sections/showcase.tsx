@@ -47,8 +47,8 @@ export function Showcase() {
                 >
                     <div className="max-w-xl space-y-3">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 w-fit">
-                            <Sparkles className="w-4 h-4 text-primary" />
-                            <span className="text-xs font-mono tracking-wider uppercase text-primary">Showcase</span>
+                            <Sparkles className="w-4 h-4 text-neutral-300" />
+                            <span className="text-xs font-mono tracking-wider uppercase text-neutral-300">Showcase</span>
                         </div>
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">Proof of fidelity — scroll the clone.</h2>
                         <p className="text-neutral-400 text-base md:text-lg leading-relaxed">
@@ -71,7 +71,7 @@ export function Showcase() {
                                     {t.id === activeId && (
                                         <motion.span
                                             layoutId="showcase-active-template"
-                                            className="absolute inset-0 rounded-full bg-primary/20 border border-primary/30"
+                                            className="absolute inset-0 rounded-full bg-white/10 border border-white/20"
                                             transition={{ type: "spring", stiffness: 500, damping: 40 }}
                                         />
                                     )}

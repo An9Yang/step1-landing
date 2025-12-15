@@ -42,7 +42,7 @@ export function Header() {
                         </Link>
                         <Button
                             size="sm"
-                            className="gap-2 group rounded-full shadow-[0_0_20px_rgba(45,102,236,0.35)] hover:shadow-[0_0_28px_rgba(45,102,236,0.45)] transition-shadow"
+                            className="gap-2 group rounded-full bg-white text-black hover:bg-neutral-200 transition-all"
                             onClick={() => window.open(CHROME_WEBSTORE_URL, "_blank", "noopener,noreferrer")}
                         >
                             Add to Chrome
