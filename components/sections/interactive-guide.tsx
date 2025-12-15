@@ -17,6 +17,7 @@ import {
     Sparkles,
     Type,
 } from "lucide-react";
+import { ReflectiveLine } from "@/components/ui/reflective-line";
 
 type Step = "browse" | "clone" | "edit" | "ready";
 
@@ -275,7 +276,7 @@ export function InteractiveGuide() {
     };
 
     return (
-        <section id="demo" className="min-h-screen flex flex-col justify-center bg-neutral-950 relative overflow-hidden snap-start snap-always py-16 md:py-20">
+        <section id="demo" className="min-h-screen flex flex-col justify-center bg-neutral-950 relative overflow-hidden snap-start py-16 md:py-20">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
 
             <Container className="relative z-10">
@@ -308,6 +309,10 @@ export function InteractiveGuide() {
                     >
                         No login required. Click the Step1 icon, watch the clone, then apply AI-style edits.
                     </motion.p>
+                </div>
+
+                <div className="w-full max-w-5xl mx-auto mb-16">
+                    <ReflectiveLine />
                 </div>
 
                 <motion.div

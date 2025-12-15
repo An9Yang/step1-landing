@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ExternalLink, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ReflectiveLine } from "@/components/ui/reflective-line";
 
 type TemplateId = "stripe" | "apple";
 
@@ -30,7 +31,12 @@ export function Showcase() {
     );
 
     return (
-        <section id="showcase" className="min-h-screen flex flex-col justify-center bg-neutral-950 snap-start snap-always py-16 md:py-20">
+        <section id="showcase" className="min-h-screen flex flex-col justify-center bg-neutral-950 snap-start py-16 md:py-20 relative">
+            {/* Top Separator - Reflective Line */}
+            <div className="absolute top-0 left-0 right-0 z-20">
+                <ReflectiveLine />
+            </div>
+
             <Container>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

@@ -4,10 +4,16 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { GridPattern } from "@/components/ui/design-system";
 import { Sparkles, Layers, Code2, ArrowRight } from "lucide-react";
+import { ReflectiveLine } from "@/components/ui/reflective-line";
 
 export function Features() {
     return (
-        <section id="features" className="min-h-screen flex flex-col justify-center bg-black relative overflow-hidden snap-start snap-always py-16 md:py-20">
+        <section id="features" className="min-h-screen flex flex-col justify-center bg-black relative overflow-hidden snap-start py-16 md:py-20">
+            {/* Top Separator */}
+            <div className="absolute top-0 left-0 right-0 z-20">
+                <ReflectiveLine />
+            </div>
+
             <Container>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

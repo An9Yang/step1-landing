@@ -2,10 +2,15 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { CHROME_WEBSTORE_URL } from "@/lib/links";
 import { Chrome } from "lucide-react";
+import { ReflectiveLine } from "@/components/ui/reflective-line";
 
 export function Footer() {
     return (
-        <footer className="border-t border-white/10 bg-neutral-950 pt-12 pb-8 text-sm snap-end">
+        <footer className="relative bg-neutral-950 pt-12 pb-8 text-sm snap-start">
+            {/* Top Separator */}
+            <div className="absolute top-0 left-0 right-0 z-20">
+                <ReflectiveLine />
+            </div>
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                     <div className="md:col-span-2 space-y-3">
