@@ -1,126 +1,116 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { Chrome, Play } from "lucide-react";
-import { CHROME_WEBSTORE_URL } from "@/lib/links";
+import { ArrowRight } from "lucide-react";
 import { GridPattern } from "@/components/ui/design-system";
 
+const quickLinks = [
+    { name: "Stripe", url: "https://stripe.com" },
+    { name: "Apple", url: "https://apple.com" },
+    { name: "Shopify", url: "https://shopify.com" },
+    { name: "Linear", url: "https://linear.app" },
+];
+
 export function HeroV2() {
+    const [inputValue, setInputValue] = useState("");
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!inputValue.trim()) return;
+
+        const encodedUrl = encodeURIComponent(inputValue.trim());
+        window.location.href = `/editor?url=${encodedUrl}`;
+    };
+
+    const handleQuickLink = (url: string) => {
+        setInputValue(url);
+    };
+
     return (
-        <section className="relative min-h-screen flex flex-col items-center justify-center bg-background overflow-hidden pt-24 snap-start">
-            {/* Design System: Ambient Effects */}
+        <section className="relative min-h-screen flex flex-col items-center justify-center bg-background overflow-hidden snap-start">
+            {/* Ambient Grid */}
             <GridPattern
                 width={60}
                 height={60}
                 x={-1}
                 y={-1}
-                className="opacity-[0.04] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]"
+                className="opacity-[0.03] [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_60%)]"
             />
 
-            <Container className="relative z-10 text-center flex-1 flex flex-col justify-center">
+            <Container className="relative z-10 text-center">
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-4xl mx-auto"
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="max-w-2xl mx-auto"
                 >
-                    {/* Badge */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/10 bg-black/5 text-xs font-medium text-ink-muted backdrop-blur-md mb-8 hover:bg-black/10 transition-colors cursor-default"
-                    >
-                        <span className="relative flex h-1.5 w-1.5">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-black"></span>
-                        </span>
-                        Clone V1 is live
-                    </motion.div>
-
                     {/* Headline */}
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tighter text-foreground leading-[1.1] mb-6"
-                    >
-                        Clone any page. <br />
-                        <span className="text-ink-muted">Make it yours.</span>
-                    </motion.h1>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-[1.1] mb-4">
+                        Clone any page.
+                    </h1>
+                    <p className="text-xl md:text-2xl text-ink-muted font-medium mb-10">
+                        Make it yours.
+                    </p>
 
-                    {/* Subhead */}
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        className="text-base md:text-lg text-ink-secondary max-w-xl mx-auto leading-relaxed mb-10 font-light"
-                    >
-                        The AI design engineer that starts with <span className="text-foreground font-normal">perfect code</span>.
-                        Capture details from any site, then refine with natural language.
-                    </motion.p>
-
-                    {/* CTA Buttons */}
+                    {/* URL Input Box - Taller, glass-card style */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.7 }}
-                        className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-14"
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="w-full max-w-xl mx-auto mb-6"
                     >
-                        <Button
-                            size="lg"
-                            className="group relative h-12 px-8 text-base rounded-[16px] font-medium overflow-hidden transition-all hover:scale-[1.02]"
-                            onClick={() => window.open(CHROME_WEBSTORE_URL, "_blank", "noopener,noreferrer")}
-                        >
-                            {/* Shimmer Effect */}
-                            <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white/20 opacity-40 group-hover:animate-shine" />
-
-                            <Chrome className="w-4 h-4 mr-2" />
-                            Add to Chrome
-                        </Button>
-                        <Button
-                            size="lg"
-                            variant="outline"
-                            className="h-12 px-8 text-base rounded-[16px] text-ink-secondary hover:text-foreground backdrop-blur-sm transition-all hover:scale-[1.02]"
-                            onClick={() => document.querySelector("#demo")?.scrollIntoView({ behavior: "smooth", block: "start" })}
-                        >
-                            <Play className="w-4 h-4 mr-2 fill-current" />
-                            See how it works
-                        </Button>
+                        <form onSubmit={handleSubmit}>
+                            <div className="glass-card p-4 relative">
+                                <textarea
+                                    value={inputValue}
+                                    onChange={(e) => setInputValue(e.target.value)}
+                                    placeholder="Paste a URL to clone..."
+                                    rows={3}
+                                    className="w-full bg-transparent text-foreground placeholder:text-ink-muted text-base outline-none resize-none leading-relaxed"
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter" && !e.shiftKey) {
+                                            e.preventDefault();
+                                            handleSubmit(e);
+                                        }
+                                    }}
+                                />
+                                <div className="flex justify-end mt-3">
+                                    <button
+                                        type="submit"
+                                        disabled={!inputValue.trim()}
+                                        className="h-10 px-5 rounded-[20px] bg-black text-white text-sm font-medium flex items-center gap-2 hover:bg-[#424242] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                                    >
+                                        Clone
+                                        <ArrowRight className="w-4 h-4" />
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </motion.div>
 
-                    {/* Trust Indicators */}
+                    {/* Quick Links */}
                     <motion.div
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.8 }}
-                        transition={{ duration: 1, delay: 0.9 }}
-                        className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs font-mono text-ink-muted uppercase tracking-wide"
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        className="flex flex-wrap justify-center gap-2"
                     >
-                        <div className="flex items-center gap-2">
-                            <CheckIcon className="w-3 h-3 text-ink-secondary" />
-                            <span>React + Tailwind</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <CheckIcon className="w-3 h-3 text-ink-secondary" />
-                            <span>Design Tokens</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <CheckIcon className="w-3 h-3 text-ink-secondary" />
-                            <span>Zero Dependencies</span>
-                        </div>
+                        <span className="text-xs text-ink-muted mr-1 self-center">Try:</span>
+                        {quickLinks.map((link) => (
+                            <button
+                                key={link.name}
+                                type="button"
+                                onClick={() => handleQuickLink(link.url)}
+                                className="px-3 py-1.5 rounded-full text-xs font-medium text-ink-secondary hover:text-foreground bg-black/[0.04] hover:bg-black/[0.08] transition-colors"
+                            >
+                                {link.name}
+                            </button>
+                        ))}
                     </motion.div>
                 </motion.div>
             </Container>
         </section>
     );
-}
-
-function CheckIcon({ className }: { className?: string }) {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth={2}>
-            <polyline points="20 6 9 17 4 12" />
-        </svg>
-    )
 }
