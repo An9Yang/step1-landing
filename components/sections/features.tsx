@@ -2,13 +2,12 @@
 
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
-import { GridPattern } from "@/components/ui/design-system";
 import { Sparkles, Layers, Code2, ArrowRight } from "lucide-react";
 import { ReflectiveLine } from "@/components/ui/reflective-line";
 
 export function Features() {
     return (
-        <section id="features" className="min-h-screen flex flex-col justify-center bg-black relative overflow-hidden snap-start py-16 md:py-20">
+        <section id="features" className="min-h-screen flex flex-col justify-center bg-background relative overflow-hidden snap-start py-16 md:py-20">
             {/* Top Separator */}
             <div className="absolute top-0 left-0 right-0 z-20">
                 <ReflectiveLine />
@@ -22,10 +21,10 @@ export function Features() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-12 md:mb-16 space-y-4"
                 >
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
                         Capabilities you can feel.
                     </h2>
-                    <p className="text-neutral-500 text-base md:text-lg max-w-xl mx-auto">
+                    <p className="text-ink-secondary text-base md:text-lg max-w-xl mx-auto">
                         Not just "copy HTML". A complete design engineering workflow.
                     </p>
                 </motion.div>
@@ -38,27 +37,25 @@ export function Features() {
                     className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto"
                 >
                     {/* Card 1: AI Editing (Span 2) */}
-                    <div className="md:col-span-2 group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 hover:bg-neutral-900/80 transition-colors">
-                        <GridPattern className="opacity-[0.06]" />
-
+                    <div className="md:col-span-2 group glass-card hover:shadow-[0px_0px_24px_0px_rgba(0,0,0,0.08)] transition-shadow">
                         <div className="relative z-10 p-6 md:p-8 h-full flex flex-col">
                             <div className="flex items-center gap-3 mb-3">
-                                <div className="p-2 rounded-lg bg-white/5 border border-white/10">
-                                    <Sparkles className="w-4 h-4 text-neutral-400" />
+                                <div className="p-2 rounded-[12px] bg-black/5 border border-black/10">
+                                    <Sparkles className="w-4 h-4 text-ink-secondary" />
                                 </div>
-                                <h3 className="text-lg font-semibold text-white">Semantic AI Editing</h3>
+                                <h3 className="text-lg font-semibold text-foreground">Semantic AI Editing</h3>
                             </div>
 
-                            <p className="text-neutral-400 text-sm max-w-md mb-6">
+                            <p className="text-ink-secondary text-sm max-w-md mb-6">
                                 "Make it dark mode." "Increase contrast." Step1 understands design intent, not just string replacement.
                             </p>
 
-                            {/* Visual Simulation */}
-                            <div className="mt-auto relative rounded-lg border border-white/10 bg-black p-3 font-mono text-xs leading-relaxed overflow-hidden shadow-xl">
+                            {/* Visual Simulation - Keep dark for code blocks */}
+                            <div className="mt-auto relative rounded-[16px] border border-black/10 bg-neutral-900 p-3 font-mono text-xs leading-relaxed overflow-hidden shadow-lg">
                                 <div className="flex gap-1.5 mb-2 border-b border-white/5 pb-2">
-                                    <div className="w-2 h-2 rounded-full bg-red-500/20" />
-                                    <div className="w-2 h-2 rounded-full bg-yellow-500/20" />
-                                    <div className="w-2 h-2 rounded-full bg-green-500/20" />
+                                    <div className="w-2 h-2 rounded-full bg-red-500/40" />
+                                    <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
+                                    <div className="w-2 h-2 rounded-full bg-green-500/40" />
                                 </div>
                                 <div className="space-y-1">
                                     <div className="text-neutral-500">// User Prompt</div>
@@ -77,44 +74,44 @@ export function Features() {
                     </div>
 
                     {/* Card 2: Design Tokens (Span 1) */}
-                    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 hover:bg-neutral-900/80 transition-colors">
+                    <div className="group glass-card hover:shadow-[0px_0px_24px_0px_rgba(0,0,0,0.08)] transition-shadow">
                         <div className="relative z-10 p-6 h-full flex flex-col">
                             <div className="flex items-center gap-3 mb-3">
-                                <div className="p-2 rounded-lg bg-white/5 border border-white/10">
-                                    <Layers className="w-4 h-4 text-neutral-400" />
+                                <div className="p-2 rounded-[12px] bg-black/5 border border-black/10">
+                                    <Layers className="w-4 h-4 text-ink-secondary" />
                                 </div>
-                                <h3 className="text-lg font-semibold text-white">Tokens</h3>
+                                <h3 className="text-lg font-semibold text-foreground">Tokens</h3>
                             </div>
 
-                            <p className="text-neutral-400 text-sm mb-4">
+                            <p className="text-ink-secondary text-sm mb-4">
                                 Colors, fonts, spacing extracted as variables.
                             </p>
 
                             {/* Token Visuals */}
                             <div className="mt-auto grid grid-cols-2 gap-1.5">
-                                <div className="h-10 rounded-lg bg-neutral-800 border border-white/5" />
-                                <div className="h-10 rounded-lg bg-neutral-100" />
-                                <div className="h-10 rounded-lg bg-cyan-500" />
-                                <div className="h-10 rounded-lg bg-purple-500" />
+                                <div className="h-10 rounded-[10px] bg-neutral-800 border border-black/5" />
+                                <div className="h-10 rounded-[10px] bg-neutral-100 border border-black/5" />
+                                <div className="h-10 rounded-[10px] bg-cyan-500" />
+                                <div className="h-10 rounded-[10px] bg-purple-500" />
                             </div>
                         </div>
                     </div>
 
                     {/* Card 3: Exact Export (Span 1) */}
-                    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 hover:bg-neutral-900/80 transition-colors">
+                    <div className="group glass-card hover:shadow-[0px_0px_24px_0px_rgba(0,0,0,0.08)] transition-shadow">
                         <div className="relative z-10 p-6 h-full flex flex-col">
                             <div className="flex items-center gap-3 mb-3">
-                                <div className="p-2 rounded-lg bg-white/5 border border-white/10">
-                                    <Code2 className="w-4 h-4 text-neutral-400" />
+                                <div className="p-2 rounded-[12px] bg-black/5 border border-black/10">
+                                    <Code2 className="w-4 h-4 text-ink-secondary" />
                                 </div>
-                                <h3 className="text-lg font-semibold text-white">Clean Code</h3>
+                                <h3 className="text-lg font-semibold text-foreground">Clean Code</h3>
                             </div>
 
-                            <p className="text-neutral-400 text-sm mb-4">
+                            <p className="text-ink-secondary text-sm mb-4">
                                 Production-ready React + Tailwind.
                             </p>
 
-                            <div className="mt-auto p-2.5 rounded-lg bg-black border border-white/10 text-[10px] font-mono text-neutral-400">
+                            <div className="mt-auto p-2.5 rounded-[12px] bg-neutral-900 border border-black/10 text-[10px] font-mono text-neutral-400">
                                 <div>export default function</div>
                                 <div className="pl-2 text-green-400">&lt;Hero /&gt;</div>
                                 <div className="pl-2 text-green-400">&lt;Features /&gt;</div>
@@ -124,14 +121,14 @@ export function Features() {
                     </div>
 
                     {/* Card 4: CTA (Span 2) */}
-                    <div className="md:col-span-2 group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-neutral-900 to-black hover:border-white/20 transition-all cursor-pointer">
-                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="md:col-span-2 group glass-card hover:shadow-[0px_0px_24px_0px_rgba(0,0,0,0.08)] transition-all cursor-pointer">
+                        <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-[30px]" />
                         <div className="relative z-10 p-6 flex items-center justify-between">
                             <div>
-                                <h3 className="text-lg font-bold text-white">Ready to build?</h3>
-                                <p className="text-neutral-400 text-sm">Start with 3 free clones per month.</p>
+                                <h3 className="text-lg font-bold text-foreground">Ready to build?</h3>
+                                <p className="text-ink-secondary text-sm">Start with 3 free clones per month.</p>
                             </div>
-                            <div className="h-10 w-10 rounded-full bg-white text-black flex items-center justify-center transform group-hover:translate-x-1 transition-transform">
+                            <div className="h-10 w-10 rounded-full bg-black text-white flex items-center justify-center transform group-hover:translate-x-1 transition-transform">
                                 <ArrowRight className="w-4 h-4" />
                             </div>
                         </div>
@@ -141,6 +138,3 @@ export function Features() {
         </section>
     );
 }
-
-
-
